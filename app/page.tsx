@@ -1,4 +1,4 @@
-import Navbar from "@/components/custom/Navbar";
+import Navbar from "@/components/Navbar";
 import HomePageFooter from "@/components/HomePageFooter";
 
 export default function Home() {
@@ -19,7 +19,7 @@ export default function Home() {
           </span>
 
           <span className="text-center py">
-            An Iot Project Developed (currently being developed) for CS 145
+            An IoT Project <span className = "line-through text-green-600">Developed</span> Currently Being Developed for CS 145
           </span>
           <span className="text-center py">Coming Soon...</span>
         </div>

@@ -1,4 +1,4 @@
-import Navbar from "@/components/custom/Navbar";
+import Navbar from "@/components/Navbar";
 
 export default function Dashboard() {
   return (

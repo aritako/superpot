@@ -4,7 +4,7 @@ function Navbar() {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Dashboard", href: "/dashboard" },
-    { name: "Docs", href: "docs" },
+    { name: "Docs", href: "/docs" },
   ];
   return (
     <nav className="sticky top-0 bg-green-100/80 p-4 mb-12 rounded-full shadow-md border-2 border-green-300 px-12 max-w-7xl w-full">
