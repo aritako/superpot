@@ -8,7 +8,7 @@ export default function Dashboard() {
       </div>
       <div className="flex justify-center flex-col gap-10">
         <span className="lg:text-lg text-black-600 text-green-800 text-center mt-[-30px]">
-          Documentation Page Under Construction...
+          🌱 Documentations Page Under Construction...
         </span>
       </div>
     </section>
