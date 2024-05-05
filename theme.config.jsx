@@ -3,7 +3,7 @@ export default {
     project: {
       link: 'https://github.com/aritako/superpot'
     },
-    docsRepositoryBase: "https://github.com/aritako/superpot/tree/main/pages",
+    docsRepositoryBase: "https://github.com/aritako/superpot/tree/main/",
     useNextSeoProps(){
       return{
         titleTemplate: '%s | SuperPot',
