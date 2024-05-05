@@ -14,12 +14,17 @@ export default function Home() {
           </span>
           <span className="lg:text-medium text-black-600 text-center mt-[-30px]">
             Don't let your plants suffer while you're away - Experience the
-            <span className="font-medium text-green-600 "> Super Pot</span>{" "}
+            <span className="font-semibold text-green-600 ">
+              {" "}
+              Super Pot
+            </span>{" "}
             today! 🌱
           </span>
 
           <span className="text-center py">
-            An IoT Project <span className = "line-through text-green-600">Developed</span> Currently Being Developed for CS 145
+            An IoT Project{" "}
+            <span className="line-through text-green-600">Developed</span>{" "}
+            Currently Being Developed for CS 145
           </span>
           <span className="text-center py">Coming Soon...</span>
         </div>
