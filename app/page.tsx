@@ -12,10 +12,10 @@ export default function Home() {
         <div className="flex justify-center">
           <Navbar />
         </div>
-        <div className="flex justify-center">
-          <img src="/img/logo_green.png" alt="Logo" className="w-1/3" />
-        </div>
-        <div className="flex justify-center flex-col gap-3">
+        <div className="flex justify-center flex-col gap-10">
+          <span className="lg:text-9xl sm:text-7xl text-5xl text-green-600 font-medium text-center">
+            Super Pot.
+          </span>
           <span className="lg:text-medium text-black-600 text-center mt-[-30px]">
             Don't let your plants suffer while you're away - Experience the
             <span className="font-semibold text-green-600 ">
