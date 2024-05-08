@@ -5,9 +5,16 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
+type loginFormData = {
+  email: string;
+  password: string;
+};
+
 export default function Form() {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [formData, setFormData] = useState<loginFormData>({
+    email: "",
+    password: "",
+  });
   const [error, setError] = useState<string | null>(null);
 
   const { data: session } = useSession();
@@ -15,11 +22,19 @@ export default function Form() {
     redirect("/dashboard");
   }
 
+  const handleChange = (e: any) => {
+    const {name, value} = e.target
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const response = await signIn("credentials", {
-      email: email,
-      password: password,
+      email: formData.email,
+      password: formData.password,
       redirect: false,
     });
     if (response?.error === "CredentialsSignin") {
@@ -40,8 +55,9 @@ export default function Form() {
           id="email"
           type="email"
           placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          name = "email"
+          value={formData.email}
+          onChange={handleChange}
         />
       </div>
 
@@ -54,8 +70,9 @@ export default function Form() {
           id="password"
           type="password"
           placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          name = "password"
+          value={formData.password}
+          onChange={handleChange}
         />
       </div>
 
