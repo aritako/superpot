@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Form() {
   const [email, setEmail] = useState<string>("");
@@ -30,13 +31,10 @@ export default function Form() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+    <form onSubmit={handleSubmit} className="mx-auto">
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-          Email
-        </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="email"
           type="email"
           placeholder="Email"
@@ -46,11 +44,8 @@ export default function Form() {
       </div>
 
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-          Password
-        </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="password"
           type="password"
           placeholder="Password"
@@ -64,15 +59,22 @@ export default function Form() {
       </div>
 
       <div className="flex items-center justify-between">
-        <Link href="/register" className="text-blue-500 hover:text-blue-800">
+        <Button
+          variant="outline"
+          type="submit"
+          className="w-full bg-green-500 rounded mt-3"
+        >
+          Sign In
+        </Button>
+      </div>
+      <div className="mt-3">
+        Don't have an account yet?{" "}
+        <Link
+          href="/register"
+          className="text-blue-500 hover:text-blue-800 underline"
+        >
           Create Account
         </Link>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="submit"
-        >
-          LOGIN
-        </button>
       </div>
     </form>
   );
