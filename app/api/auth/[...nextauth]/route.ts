@@ -17,8 +17,8 @@ const handler = NextAuth({
       async authorize(credentials): Promise<any> {
         return await signInWithEmailAndPassword(
           auth,
-          credentials.email,
-          credentials.password
+          credentials!.email,
+          credentials!.password
         )
           .then((userCredential) => {
             if (userCredential.user) {

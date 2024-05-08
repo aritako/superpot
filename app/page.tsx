@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import HomePageFooter from "@/components/HomePageFooter";
 import { useSession } from "next-auth/react";
@@ -11,6 +12,12 @@ export default function Home() {
       redirect("/login");
     },
   });
+  const [email, setEmail] = useState<string | undefined | null>("");
+  useEffect(() => {
+    if (session) {
+      setEmail(session.data?.user?.email);
+    }
+  }, [session]);
   return (
     <main className="flex flex-col min-h-screen">
       <section className="flex-grow lg:p-12 sm:p-6 p-6 bg-gradient-to-b from-green-200 to-green-50">
@@ -37,7 +44,7 @@ export default function Home() {
           </span>
           <span className="text-center py">Coming Soon...</span>
 
-          {session && <span className="text-center py">Welcome, {session.data?.user?.email}!</span>}
+          {email && <span className="text-center py">Welcome, {email}!</span>}
         </div>
       </section>
 

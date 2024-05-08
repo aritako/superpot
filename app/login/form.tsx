@@ -10,12 +10,6 @@ export default function Form() {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
-  const { data: session } = useSession();
-  if (session) {
-    sessionStorage.setItem("userEmail", email);
-    sessionStorage.setItem("validInfo", "true");
-    redirect("/");
-  }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,9 +18,9 @@ export default function Form() {
       password: password,
       redirect: false,
     });
-    if (response.error === "CredentialsSignin") {
+    if (response?.error === "CredentialsSignin") {
       setError("Email or password is incorrect");
-    } else if (response.error === "ConfigurationError") {
+    } else if (response?.error === "ConfigurationError") {
       setError("Invalid action");
     }
   };
