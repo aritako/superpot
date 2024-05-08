@@ -10,6 +10,12 @@ import { useSession, signIn } from "next-auth/react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
+type registerFormData = {
+  email: string;
+  password: string;
+  repassword: string;
+};
+
 export default function Form() {
   const { data: session } = useSession();
   if (session) {
@@ -17,21 +23,29 @@ export default function Form() {
   }
   
   const router = useRouter();
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [repassword, setRepassword] = useState<string>("");
+  const [formData, setFormData] = useState<registerFormData>({
+    email: "",
+    password: "",
+    repassword: "",
+  })
   const [error, setError] = useState<string | null>(null);
+
+  const handleChange = (e: any) => {
+    const {name, value} = e.target
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (password !== repassword) {
+    if (formData.password !== formData.repassword) {
       setError("Passwords do not match");
     // } else if { 
     } else {
-      createUserWithEmailAndPassword(auth, email, password)
+      createUserWithEmailAndPassword(auth, formData.email, formData.password)
         .then((userCredential) => {
-          console.log(userCredential);
-          sessionStorage.setItem("userEmail", email);
           router.push(`/login`);
         })
         .catch((error) => {
@@ -57,8 +71,9 @@ return (
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="email"
                     placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    name = "email"
+                    value={formData.email}
+                    onChange={handleChange}
                 />
             </div>
         </div>
@@ -69,8 +84,9 @@ return (
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="password"
                     placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    name = "password"
+                    value={formData.password}
+                    onChange={handleChange}
                 />
             </div>
             <div className="flex flex-col mt-4">
@@ -79,8 +95,9 @@ return (
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="password"
                     placeholder="Confirm Password"
-                    value={repassword}
-                    onChange={(e) => setRepassword(e.target.value)}
+                    name = "repassword"
+                    value={formData.repassword}
+                    onChange={handleChange}
                 />
             </div>
         </div>
