@@ -1,7 +1,16 @@
+"use client";
 import Navbar from "@/components/Navbar";
 import HomePageFooter from "@/components/HomePageFooter";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 export default function Home() {
+  const session = useSession({
+    required: true,
+    onUnauthenticated() {
+      redirect("/login");
+    },
+  });
   return (
     <main className="flex flex-col min-h-screen">
       <section className="flex-grow lg:p-12 sm:p-6 p-6 bg-gradient-to-b from-green-200 to-green-50">
@@ -27,6 +36,8 @@ export default function Home() {
             Currently Being Developed for CS 145
           </span>
           <span className="text-center py">Coming Soon...</span>
+
+          {session && <span className="text-center py">Welcome, {session.data?.user?.email}!</span>}
         </div>
       </section>
 
