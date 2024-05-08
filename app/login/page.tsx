@@ -11,7 +11,7 @@ async function Login() {
         <img
           src="/img/logo_green.png"
           alt="Logo"
-          className="w-1/6 mt-[-60px] mb-[-35px]"
+          className="w-1/6 mt-[-55px] mb-[-35px]"
         />
         <h1 className="text-2xl mb-[-35px]">Welcome Back! 🌱</h1>
       </div>
