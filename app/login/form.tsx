@@ -10,6 +10,10 @@ export default function Form() {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
+  const { data: session } = useSession();
+  if (session) {
+    redirect("/");
+  }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
