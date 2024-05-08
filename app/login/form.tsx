@@ -12,7 +12,7 @@ export default function Form() {
 
   const { data: session } = useSession();
   if (session) {
-    redirect("/");
+    redirect("/dashboard");
   }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
