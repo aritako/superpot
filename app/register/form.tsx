@@ -85,7 +85,7 @@ export default function RegisterForm() {
           onChange={handleChange}
         />
       </div>
-      <div className="mb-4">
+      <div className="mb-2">
         <input
           className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="password"
@@ -96,15 +96,17 @@ export default function RegisterForm() {
         />
       </div>
 
-      <div className="mb-4">
-        {error && <p className="text-red-500">{error}</p>}
+      <div style={{ minHeight: "20px" }}>
+        {error && (
+          <p className="flex justify-center text-red-500 text-xs ">{error}</p>
+        )}
       </div>
 
       <div className="flex items-center justify-between">
         <Button
           variant="outline"
           type="submit"
-          className="w-full bg-green-500 rounded mt-3"
+          className="w-full bg-green-500 rounded"
         >
           Sign Up
         </Button>

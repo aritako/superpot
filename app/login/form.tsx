@@ -24,7 +24,7 @@ export default function Form() {
   }
 
   const handleChange = (e: any) => {
-    const {name, value} = e.target
+    const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
@@ -53,26 +53,30 @@ export default function Form() {
           id="email"
           type="email"
           placeholder="Email"
-          name = "email"
+          name="email"
           value={formData.email}
           onChange={handleChange}
         />
       </div>
 
-      <div className="mb-4">
+      <div className="mb-1">
         <input
           className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="password"
           type="password"
           placeholder="Password"
-          name = "password"
+          name="password"
           value={formData.password}
           onChange={handleChange}
         />
       </div>
 
-      <div className="mb-4">
-        {error && <p className="text-red-500 text-xs italic">{error}</p>}
+      <div style={{ minHeight: "20px" }}>
+        {error && (
+          <p className="flex justify-center text-red-500 text-xs italic">
+            {error}
+          </p>
+        )}
       </div>
 
       <div className="flex items-center justify-between">
