@@ -92,7 +92,7 @@ export default function Form() {
         Don't have an account yet?{" "}
         <Link
           href="/register"
-          className="text-blue-500 hover:text-blue-800 underline"
+          className="text-green-500 hover:text-green-800 underline"
         >
           Create Account
         </Link>
