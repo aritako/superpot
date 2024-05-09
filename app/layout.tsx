@@ -1,10 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Krona_One } from "next/font/google";
 import "./globals.css";
 import SessionProvider from "../components/SessionProvider";
 
 const inter = Inter({ subsets: ["latin"] });
+const kronaOne = Krona_One({
+  subsets: ["latin"], 
+  weight: ["400"],
+  variable: "--font-krona-one"
+});
 
 export const metadata: Metadata = {
   title: "Super Pot",
@@ -18,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-green-50`}>
+      <body className={`${inter.className} ${kronaOne.variable} bg-green-50`}>
         <SessionProvider>{children}</SessionProvider>
         </body>
     </html>
