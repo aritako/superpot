@@ -25,10 +25,15 @@ export default function Dashboard() {
     );
   } else {
     return (
-      <section className="flex-grow lg:p-12 sm:p-6 p-6 bg-gradient-to-b from-green-200 to-green-50">
-        <h1 className="flex text-xl items-center justify-center h-screen">
+      <section className="lg:p-12 sm:p-6 p-6 bg-gradient-to-b from-green-200 to-green-50">
+        <div className="flex flex-col text-xl items-center justify-center h-screen transform -translate-y-20">
+          <img
+            src="/img/logo_green.png"
+            alt="Logo"
+            className="w-1/6 mb-[-30px]"
+          />
           Loading... 🌱
-        </h1>
+        </div>
       </section>
     );
   }
