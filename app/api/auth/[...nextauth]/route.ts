@@ -22,7 +22,6 @@ const handler = NextAuth({
         )
           .then((userCredential) => {
             if (userCredential.user) {
-              console.log(userCredential.user);
               return userCredential.user;
             } else {
               console.log("error");
