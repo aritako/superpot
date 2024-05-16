@@ -34,7 +34,7 @@ export default function LineChart({ data }: { data: DataPoint[] }) {
   return (
     <Card className="moisture-sensor-card w-1/3">
       <CardHeader>
-        <CardTitle className="flex items-center gap-1 font-normal ">
+        <CardTitle className="flex items-center gap-1 font-normal">
           💧 Moisture Sensor
         </CardTitle>
         <CardDescription>

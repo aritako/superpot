@@ -6,11 +6,15 @@ import { use, useEffect, useState } from "react";
 import { ReadData, SetData } from "../../components/RealtimeDatabase";
 import { auth } from "../../firebase";
 import { ref, get, onValue, set } from "firebase/database";
+import LightSensorChart from "@/components/LightSensorChart";
+import MoistureSensorChart from "@/components/MoistureSensorChart";
 
 type sensorData = {
   light: number;
   moist: number;
 };
+type LightSensorData = { timestamp: Date; light: number };
+type MoistSensorData = { timestamp: Date; moist: number };
 
 export default function Dashboard() {
   const [sensors, setSensors] = useState<sensorData>({
@@ -22,6 +26,16 @@ export default function Dashboard() {
   const [fetched, setFetched] = useState<boolean>(false);
   const [write, setWrite] = useState<boolean>(false);
   const [copy, setCopy] = useState<boolean>(false);
+  //const [lightData, setLightData] = useState<LightSensorData[]>([]);
+  // sample light data
+  const lightData = [
+    { timestamp: new Date("2022-01-01T03:35:00"), light: 1 },
+    { timestamp: new Date("2022-01-01T03:36:03"), light: 2 },
+    { timestamp: new Date("2022-01-01T03:37:06"), light: 0 },
+    { timestamp: new Date("2022-01-01T03:38:09"), light: 4 },
+    { timestamp: new Date("2022-01-01T03:39:12"), light: 5 },
+  ];
+  const [moistData, setMoistData] = useState<MoistSensorData[]>([]);
 
   const session = useSession({
     required: true,
@@ -60,6 +74,17 @@ export default function Dashboard() {
         setCopy(true);
       }
       console.log(sensData, actuData);
+      // Adding light reading to the array
+      // setLightData((prevData) => [
+      //   ...prevData,
+      //   { timestamp: new Date(), light: sensData.light },
+      // ]);
+
+      // Adding moisture reading to the array
+      setMoistData((prevData) => [
+        ...prevData,
+        { timestamp: new Date(), moist: sensData.moist },
+      ]);
       setFetched(true);
     }
   });
@@ -68,26 +93,27 @@ export default function Dashboard() {
     <section className="flex-grow lg:p-12 sm:p-6 p-6 bg-gradient-to-b from-green-200 to-green-50">
       <Navbar />
       <div className="flex justify-center flex-col gap-10">
-        <span className="lg:text-lg text-black-600 text-green-800 text-center mt-[-30px]">
-          🌱 Dashboard Page Under Construction...
-          <p>Light Sensor: {sensors.light}</p>
-          <p>Moisture Sensor: {sensors.moist}</p>
-          <p>Lid Status: {lidStat ? "Open" : "Closed"}</p>
-          <button
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-            onClick={() => {
-              setFetched(false);
-            }}
-          >
-            Refresh
-          </button>
-          <button
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-            onClick={handleSubmit}
-          >
-            {manualLid ? "Close Lid" : "Open Lid"}
-          </button>
-        </span>
+        <div className="flex gap-4 justify-center">
+          <LightSensorChart data={lightData} />
+          <MoistureSensorChart data={moistData} />
+        </div>
+        <p>Light Sensor: {sensors.light}</p>
+        <p>Moisture Sensor: {sensors.moist}</p>
+        <p>Lid Status: {lidStat ? "Open" : "Closed"}</p>
+        <button
+          className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+          onClick={() => {
+            setFetched(false);
+          }}
+        >
+          Refresh
+        </button>
+        <button
+          className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+          onClick={handleSubmit}
+        >
+          {manualLid ? "Close Lid" : "Open Lid"}
+        </button>
       </div>
     </section>
   );
