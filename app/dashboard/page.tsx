@@ -2,22 +2,36 @@
 import Navbar from "@/components/Navbar";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
-import { useEffect, useState } from "react";
-import { ReadRealtimeDatabase } from "../../components/RealtimeDatabase";
+import { use, useEffect, useState } from "react";
+import { ReadData, SetData } from "../../components/RealtimeDatabase";
 import { auth } from "../../firebase";
-import { ref, get, onValue } from "firebase/database";
+import { ref, get, onValue, set } from "firebase/database";
 
 type sensorData = {
-  lightSensor: number;
-  moistureSensor: number;
+  light: number;
+  moist: number;
+}
+
+type inputData = {
+  light: number;
+  moist: number;
+  lidOpen: boolean;
 }
 
 export default function Dashboard() {
   const [sensors, setSensors] = useState<sensorData>({
-    lightSensor: 0,
-    moistureSensor: 0,
+    light: 0,
+    moist: 0,
   });
-  const [fetched, setFetched] = useState(false);
+  const [input, setInput] = useState<inputData>({
+    light: 0,
+    moist: 0,
+    lidOpen: false,
+  });
+  const [lidStat, setLidStat] = useState<boolean>(false);
+  const [fetched, setFetched] = useState<boolean>(false);
+  const [write, setWrite] = useState<boolean>(false);
+  const [copy, setCopy] = useState<boolean>(false);
 
   const session = useSession({
     required: true,
@@ -26,11 +40,52 @@ export default function Dashboard() {
     },
   });
 
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setInput({
+      ...input,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async () => {
+    setWrite(true);
+    auth.onAuthStateChanged(async (user) => {
+      if (user && write) {
+        await SetData(user.uid, 'actu/lidOpen', input.lidOpen);
+        await SetData(user.uid, 'sens/light', input.light);
+        await SetData(user.uid, 'sens/moist', input.moist);
+        setWrite(false);
+      }
+    });
+  
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFetched(false);
+      // console.log("Refreshed");
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+
   auth.onAuthStateChanged(async (user) => {
     if (user && !fetched) {
-      const sensorInstance = await ReadRealtimeDatabase(user.uid);
-      setSensors(sensorInstance);
-      console.log(sensorInstance);
+      const sensData = await ReadData(user.uid, 'sens');
+      const actuData = await ReadData(user.uid, 'actu');
+      setSensors(sensData);
+      setLidStat(actuData.lidOpen);
+      if (!copy) {
+        setInput({
+          light: sensData.light,
+          moist: sensData.moist,
+          lidOpen: actuData.lidOpen,
+        });
+        setCopy(true);
+      }
+      console.log(sensData, actuData);
       setFetched(true);
     }
   });
@@ -41,9 +96,31 @@ export default function Dashboard() {
       <div className="flex justify-center flex-col gap-10">
         <span className="lg:text-lg text-black-600 text-green-800 text-center mt-[-30px]">
           🌱 Dashboard Page Under Construction...
-          <p>Light Sensor: {sensors.lightSensor}</p>
-          <p>Moisture Sensor: {sensors.moistureSensor}</p>
-          <button onClick={() => {setFetched(false)}}> Refresh </button>
+          <p>Light Sensor: {sensors.light}</p>
+          <p>Moisture Sensor: {sensors.moist}</p>
+          <p>Lid Status: {lidStat ? "Open" : "Closed"}</p>
+          <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" onClick={() => {setFetched(false)}}>
+            Refresh
+          </button>
+
+          <div className="flex flex-col gap-4">
+            <label className="text-green-800">Light Level:</label>
+            <input type="number" name="light" value={input.light} onChange={handleChange} className="border border-green-500 rounded-md px-2 py-1" />
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <label className="text-green-800">Moisture Level:</label>
+            <input type="number" name="moist" value={input.moist} onChange={handleChange} className="border border-green-500 rounded-md px-2 py-1" />
+          </div>
+
+          <div className="flex items-center gap-2">
+            <input type="checkbox" name="lidOpen" checked={input.lidOpen} onChange={handleChange} className="form-checkbox text-green-500" />
+            <label className="text-green-800">Lid Open</label>
+          </div>
+
+          <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" onClick={handleSubmit}>
+            Submit
+          </button>
         </span>
       </div>
     </section>
