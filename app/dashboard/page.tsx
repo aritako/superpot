@@ -12,22 +12,12 @@ type sensorData = {
   moist: number;
 }
 
-type inputData = {
-  light: number;
-  moist: number;
-  lidOpen: boolean;
-}
-
 export default function Dashboard() {
   const [sensors, setSensors] = useState<sensorData>({
     light: 0,
     moist: 0,
   });
-  const [input, setInput] = useState<inputData>({
-    light: 0,
-    moist: 0,
-    lidOpen: false,
-  });
+  const [manualLid, setManualLid] = useState<boolean>(false);
   const [lidStat, setLidStat] = useState<boolean>(false);
   const [fetched, setFetched] = useState<boolean>(false);
   const [write, setWrite] = useState<boolean>(false);
@@ -40,22 +30,12 @@ export default function Dashboard() {
     },
   });
 
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setInput({
-      ...input,
-      [name]: value,
-    });
-  };
-
   const handleSubmit = async () => {
-    setWrite(true);
     auth.onAuthStateChanged(async (user) => {
-      if (user && write) {
-        await SetData(user.uid, 'actu/lidOpen', input.lidOpen);
-        await SetData(user.uid, 'sens/light', input.light);
-        await SetData(user.uid, 'sens/moist', input.moist);
-        setWrite(false);
+      if (user) {
+        await SetData(user.uid, !manualLid);
+        setCopy(false);
+        setFetched(false);
       }
     });
   
@@ -78,11 +58,7 @@ export default function Dashboard() {
       setSensors(sensData);
       setLidStat(actuData.lidOpen);
       if (!copy) {
-        setInput({
-          light: sensData.light,
-          moist: sensData.moist,
-          lidOpen: actuData.lidOpen,
-        });
+        setManualLid(actuData.lidOpen);
         setCopy(true);
       }
       console.log(sensData, actuData);
@@ -102,24 +78,8 @@ export default function Dashboard() {
           <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" onClick={() => {setFetched(false)}}>
             Refresh
           </button>
-
-          <div className="flex flex-col gap-4">
-            <label className="text-green-800">Light Level:</label>
-            <input type="number" name="light" value={input.light} onChange={handleChange} className="border border-green-500 rounded-md px-2 py-1" />
-          </div>
-
-          <div className="flex flex-col gap-4">
-            <label className="text-green-800">Moisture Level:</label>
-            <input type="number" name="moist" value={input.moist} onChange={handleChange} className="border border-green-500 rounded-md px-2 py-1" />
-          </div>
-
-          <div className="flex items-center gap-2">
-            <input type="checkbox" name="lidOpen" checked={input.lidOpen} onChange={handleChange} className="form-checkbox text-green-500" />
-            <label className="text-green-800">Lid Open</label>
-          </div>
-
           <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" onClick={handleSubmit}>
-            Submit
+            {manualLid ? "Close Lid" : "Open Lid"}
           </button>
         </span>
       </div>

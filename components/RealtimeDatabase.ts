@@ -15,9 +15,9 @@ export async function ReadData(uid: string, path: string) {
     }
 }
 
-export async function SetData(uid: string, path: string, data: any) {
+export async function SetData(uid: string, data: boolean) {
     try {
-        const dbRef = ref(database, `users/${uid}/${path}`);
+        const dbRef = ref(database, `users/${uid}/actu/lidOpen`);
         await set(dbRef, data);
     } catch (error) {
         console.log("Error updating data:", error);
