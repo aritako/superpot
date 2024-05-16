@@ -1,6 +1,6 @@
 import React from "react";
 
-function Navbar() {
+export default function Navbar() {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Dashboard", href: "/login" },
@@ -26,5 +26,3 @@ function Navbar() {
     </div>
   );
 }
-
-export default Navbar;

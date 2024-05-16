@@ -78,3 +78,11 @@
 .krona_one {
   font-family: var(--font-krona-one);
 }
+
+.light-sensor-card {
+  background-color:  #fffae6; 
+}
+
+.moisture-sensor-card {
+  background-color: #E1F5FE; 
+}
