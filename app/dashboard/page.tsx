@@ -95,7 +95,6 @@ export default function Dashboard() {
         { timestamp: new Date(), moist: sensData.moist },
       ]);
 
-      
       console.log(lightData);
       console.log(moistData);
 
@@ -108,12 +107,23 @@ export default function Dashboard() {
       <Navbar />
       <div className="flex justify-center flex-col gap-10">
         <div className="flex gap-4 justify-center">
-          <LightSensorChart data={lightData.filter((_, idx) => {return (idx % 2 === 0)})} />
-          <MoistureSensorChart data={moistData.filter((_, idx) => {return (idx % 2 === 0)})} />
+          <LightSensorChart
+            data={lightData.filter((_, idx) => {
+              return idx % 2 === 0;
+            })}
+          />
+          <MoistureSensorChart
+            data={moistData.filter((_, idx) => {
+              return idx % 2 === 0;
+            })}
+          />
         </div>
-        <p>Light Sensor: {sensors.light}</p>
-        <p>Moisture Sensor: {sensors.moist}</p>
-        <p>Lid Status: {lidStat ? "Open" : "Closed"}</p>
+      </div>
+      <p>Light Sensor: {sensors.light}</p>
+      <p>Moisture Sensor: {sensors.moist}</p>
+      <p>Lid Status: {lidStat ? "Open" : "Closed"}</p>
+
+      <div className="flex justify-center gap-4">
         <button
           className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
           onClick={() => {
@@ -127,6 +137,11 @@ export default function Dashboard() {
           onClick={handleSubmit}
         >
           {manualLid ? "Close Lid" : "Open Lid"}
+        </button>
+        {/* Water plant button not yet implemented*/}
+        <button className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+          Water Plant
+          {/* manualWater ? "Stop" : "Water Plant*/}
         </button>
       </div>
     </section>

@@ -49,7 +49,7 @@ export default function Form() {
     <form onSubmit={handleSubmit} className="mx-auto">
       <div className="mb-4">
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-green-300"
           id="email"
           type="email"
           placeholder="Email"
@@ -58,10 +58,9 @@ export default function Form() {
           onChange={handleChange}
         />
       </div>
-
       <div className="mb-1">
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-green-300"
           id="password"
           type="password"
           placeholder="Password"

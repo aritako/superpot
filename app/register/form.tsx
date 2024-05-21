@@ -1,10 +1,7 @@
 "use client";
 import { FormEvent, useState, useEffect } from "react";
 import { auth } from "../../firebase";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useSession, signIn } from "next-auth/react";
 import { redirect } from "next/navigation";
@@ -67,7 +64,7 @@ export default function RegisterForm() {
     <form onSubmit={handleSubmit} className="mx-auto">
       <div className="mb-4">
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-green-300"
           type="email"
           placeholder="Email"
           name="email"
@@ -77,7 +74,7 @@ export default function RegisterForm() {
       </div>
       <div className="mb-4">
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-green-300"
           type="password"
           placeholder="Password"
           name="password"
@@ -87,7 +84,7 @@ export default function RegisterForm() {
       </div>
       <div className="mb-2">
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-green-300"
           type="password"
           placeholder="Confirm Password"
           name="repassword"
