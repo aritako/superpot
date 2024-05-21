@@ -8,6 +8,7 @@ import { auth } from "../../firebase";
 import { ref, get, onValue, set } from "firebase/database";
 import LightSensorChart from "@/components/LightSensorChart";
 import MoistureSensorChart from "@/components/MoistureSensorChart";
+import { unsubscribe } from "diagnostics_channel";
 
 type sensorData = {
   light: number;
@@ -24,17 +25,19 @@ export default function Dashboard() {
   const [manualLid, setManualLid] = useState<boolean>(false);
   const [lidStat, setLidStat] = useState<boolean>(false);
   const [fetched, setFetched] = useState<boolean>(false);
-  const [write, setWrite] = useState<boolean>(false);
+  const [authFlag, setAuthFlag] = useState<boolean>(false);
   const [copy, setCopy] = useState<boolean>(false);
   //const [lightData, setLightData] = useState<LightSensorData[]>([]);
   // sample light data
-  const lightData = [
-    { timestamp: new Date("2022-01-01T03:35:00"), light: 1 },
-    { timestamp: new Date("2022-01-01T03:36:03"), light: 2 },
-    { timestamp: new Date("2022-01-01T03:37:06"), light: 0 },
-    { timestamp: new Date("2022-01-01T03:38:09"), light: 4 },
-    { timestamp: new Date("2022-01-01T03:39:12"), light: 5 },
-  ];
+  // const lightData = [
+  //   { timestamp: new Date("2022-01-01T03:35:00"), light: 1 },
+  //   { timestamp: new Date("2022-01-01T03:36:03"), light: 2 },
+  //   { timestamp: new Date("2022-01-01T03:37:06"), light: 0 },
+  //   { timestamp: new Date("2022-01-01T03:38:09"), light: 4 },
+  //   { timestamp: new Date("2022-01-01T03:39:12"), light: 5 },
+  // ];
+
+  const [lightData, setLightData] = useState<LightSensorData[]>([]);
   const [moistData, setMoistData] = useState<MoistSensorData[]>([]);
 
   const session = useSession({
@@ -57,14 +60,15 @@ export default function Dashboard() {
   useEffect(() => {
     const interval = setInterval(() => {
       setFetched(false);
-      // console.log("Refreshed");
     }, 3000);
 
     return () => clearInterval(interval);
   }, []);
 
   auth.onAuthStateChanged(async (user) => {
-    if (user && !fetched) {
+    if (user && !fetched && !authFlag) {
+      setAuthFlag(true);
+      setFetched(true);
       const sensData = await ReadData(user.uid, "sens");
       const actuData = await ReadData(user.uid, "actu");
       setSensors(sensData);
@@ -81,11 +85,21 @@ export default function Dashboard() {
       // ]);
 
       // Adding moisture reading to the array
+      setLightData((prevData) => [
+        ...prevData.slice(-9),
+        { timestamp: new Date(), light: sensData.light },
+      ]);
+
       setMoistData((prevData) => [
-        ...prevData,
+        ...prevData.slice(-9),
         { timestamp: new Date(), moist: sensData.moist },
       ]);
-      setFetched(true);
+
+      
+      console.log(lightData);
+      console.log(moistData);
+
+      setAuthFlag(false);
     }
   });
 
@@ -94,8 +108,8 @@ export default function Dashboard() {
       <Navbar />
       <div className="flex justify-center flex-col gap-10">
         <div className="flex gap-4 justify-center">
-          <LightSensorChart data={lightData} />
-          <MoistureSensorChart data={moistData} />
+          <LightSensorChart data={lightData.filter((_, idx) => {return (idx % 2 === 0)})} />
+          <MoistureSensorChart data={moistData.filter((_, idx) => {return (idx % 2 === 0)})} />
         </div>
         <p>Light Sensor: {sensors.light}</p>
         <p>Moisture Sensor: {sensors.moist}</p>

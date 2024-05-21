@@ -44,6 +44,9 @@ export default function LineChart({ data }: { data: DataPoint[] }) {
       <CardContent>
         <Line
           data={{
+            labels: data.map((item) => {
+              return displayTime(item.timestamp);
+            }),
             datasets: [
               {
                 label: "Moisture Level in %",
@@ -70,3 +73,12 @@ export default function LineChart({ data }: { data: DataPoint[] }) {
     </Card>
   );
 }
+
+const displayTime = (date: Date) => {
+  const hrs = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
+  const mins =
+    date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
+  const secs =
+    date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds();
+  return `${hrs}:${mins}:${secs}`;
+};
