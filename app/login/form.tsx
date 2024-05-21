@@ -11,7 +11,7 @@ type loginFormData = {
   password: string;
 };
 
-export default function Form() {
+export default function LoginForm() {
   const [formData, setFormData] = useState<loginFormData>({
     email: "",
     password: "",
