@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { auth } from "../../firebase";
 
 type loginFormData = {
   email: string;
@@ -38,11 +39,12 @@ export default function LoginForm() {
       password: formData.password,
       redirect: false,
     });
+    
     if (response?.error === "CredentialsSignin") {
       setError("Email or password is incorrect");
     } else if (response?.error === "ConfigurationError") {
       setError("Invalid action");
-    }
+    } 
   };
 
   return (

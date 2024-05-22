@@ -57,11 +57,6 @@ export default function Dashboard() {
   };
 
   const fetchData = async () => {
-    const uid = auth.currentUser?.uid!;
-    console.log("uid: ", uid);
-    if (!uid) {
-      return;
-    }
     const sensData = await ReadData(uid, "sens");
     const actuData = await ReadData(uid, "actu");
     setSensors(sensData);
