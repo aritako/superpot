@@ -1,11 +1,23 @@
 import React from "react";
+import { signOut } from "next-auth/react";
 
-export default function Navbar() {
+export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
+  const navBarFont =
+    "text-sm flex items-center rounded-full px-3 text-slate-900 hover:bg-green-200 hover:text-slate-900 transition duration-300 ease-in-out";
+
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "Dashboard", href: "/login" },
+    { name: "Dashboard", href: hasLogin ? "/dashboard" : "/login" },
     { name: "Docs", href: "/docs" },
   ];
+
+  const handleLogout = async () => {
+    if (confirm("Are you sure you want to logout?")) {
+      sessionStorage.removeItem("uid");
+      await signOut();
+    }
+  };
+
   return (
     <div className="flex justify-center">
       <nav className="flex sticky top-0 bg-green-100/80 mb-12 rounded-full shadow-md border-2 border-green-300 px-6 py-2 max-w-6xl w-full">
@@ -14,14 +26,19 @@ export default function Navbar() {
           <span className="krona_one text-green-600">SuperPot</span>
         </a>
         {navigation.map((item) => (
-          <a
-            key={item.name}
-            href={item.href}
-            className="text-sm flex items-center rounded-full px-3 text-slate-900 hover:bg-green-200 hover:text-slate-900 transition duration-300 ease-in-out"
-          >
+          <a key={item.name} href={item.href} className={navBarFont}>
             {item.name}
           </a>
         ))}
+        {hasLogin ? (
+          <button className={navBarFont} onClick={handleLogout}>
+            Logout
+          </button>
+        ) : (
+          <a href="/login" className={navBarFont}>
+            Login
+          </a>
+        )}
       </nav>
     </div>
   );

@@ -4,11 +4,11 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { use, useEffect, useState } from "react";
 import { ReadData, SetData } from "../../components/RealtimeDatabase";
-import { auth } from "../../firebase";
-import { ref, get, onValue, set } from "firebase/database";
 import LightSensorChart from "@/components/LightSensorChart";
 import MoistureSensorChart from "@/components/MoistureSensorChart";
-import { unsubscribe } from "diagnostics_channel";
+// import { auth } from "../../firebase";
+// import { ref, get, onValue, set } from "firebase/database";
+// import { unsubscribe } from "diagnostics_channel";
 import { signOut } from "next-auth/react";
 
 type sensorData = {
@@ -19,7 +19,7 @@ type LightSensorData = { timestamp: Date; light: number };
 type MoistSensorData = { timestamp: Date; moist: number };
 
 export default function Dashboard() {
-  const uid = 'MDKPitgeP9SqreHsc1yw7RcS8yy1';
+  const uid = "MDKPitgeP9SqreHsc1yw7RcS8yy1";
   const [sensors, setSensors] = useState<sensorData>({
     light: 0,
     moist: 0,
@@ -27,16 +27,7 @@ export default function Dashboard() {
   const [manualLid, setManualLid] = useState<boolean>(false);
   const [lidStat, setLidStat] = useState<boolean>(false);
   const [copy, setCopy] = useState<boolean>(false);
-  const [userUID, setUserUID] = useState<string>("");
-  //const [lightData, setLightData] = useState<LightSensorData[]>([]);
-  // sample light data
-  // const lightData = [
-  //   { timestamp: new Date("2022-01-01T03:35:00"), light: 1 },
-  //   { timestamp: new Date("2022-01-01T03:36:03"), light: 2 },
-  //   { timestamp: new Date("2022-01-01T03:37:06"), light: 0 },
-  //   { timestamp: new Date("2022-01-01T03:38:09"), light: 4 },
-  //   { timestamp: new Date("2022-01-01T03:39:12"), light: 5 },
-  // ];
+  // const [userUID, setUserUID] = useState<string>("");
 
   const [lightData, setLightData] = useState<LightSensorData[]>([]);
   const [moistData, setMoistData] = useState<MoistSensorData[]>([]);
@@ -47,15 +38,6 @@ export default function Dashboard() {
       redirect("/login");
     },
   });
-
-  const handleLogout = async () => {
-    try {
-      await auth.signOut();
-      // User is now signed out
-    } catch (error) {
-      console.error("Error signing out: ", error);
-    }
-  };
 
   const fetchData = async () => {
     const sensData = await ReadData(uid, "sens");
@@ -94,15 +76,8 @@ export default function Dashboard() {
 
   return (
     <section className="flex-grow lg:p-12 sm:p-6 p-6 bg-gradient-to-b from-green-200 to-green-50">
-      <Navbar />
-      <button
-        onClick={() => {
-          sessionStorage.removeItem("uid");
-          signOut();
-        }}
-      >
-        Logout
-      </button>
+      <Navbar hasLogin={true} />
+
       <div className="flex justify-center flex-col gap-10">
         <div className="flex gap-4 justify-center">
           <LightSensorChart data={lightData} />
@@ -111,12 +86,20 @@ export default function Dashboard() {
       </div>
       <div className="flex items-center justify-center space-x-10 p-10 rounded-lg">
         <div className="flex flex-col items-center space-y-2">
-          <img src="/img/light_sensor.png" alt="light sensor icon" className="w-20 h-20" />
+          <img
+            src="/img/light_sensor.png"
+            alt="light sensor icon"
+            className="w-20 h-20"
+          />
           <h2 className="text-2xl font-bold">Light Sensor</h2>
           <p className="text-xl">{sensors.light}</p>
         </div>
         <div className="flex flex-col items-center space-y-2">
-          <img src="/img/moisture_sensor.png" alt="moisture sensor icon" className="w-20 h-20" />
+          <img
+            src="/img/moisture_sensor.png"
+            alt="moisture sensor icon"
+            className="w-20 h-20"
+          />
           <h2 className="text-2xl font-bold">Moisture Sensor</h2>
           <p className="text-xl">{sensors.moist}</p>
         </div>
@@ -126,7 +109,6 @@ export default function Dashboard() {
           <p className="text-xl">{lidStat ? "Open" : "Closed"}</p>
         </div>
       </div>
-
 
       <div className="flex justify-center gap-4">
         <button
