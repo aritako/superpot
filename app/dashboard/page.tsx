@@ -109,9 +109,24 @@ export default function Dashboard() {
           <MoistureSensorChart data={moistData} />
         </div>
       </div>
-      <p>Light Sensor: {sensors.light}</p>
-      <p>Moisture Sensor: {sensors.moist}</p>
-      <p>Lid Status: {lidStat ? "Open" : "Closed"}</p>
+      <div className="flex items-center justify-center space-x-10 p-10 rounded-lg">
+        <div className="flex flex-col items-center space-y-2">
+          <img src="/img/light_sensor.png" alt="light sensor icon" className="w-20 h-20" />
+          <h2 className="text-2xl font-bold">Light Sensor</h2>
+          <p className="text-xl">{sensors.light}</p>
+        </div>
+        <div className="flex flex-col items-center space-y-2">
+          <img src="/img/moisture_sensor.png" alt="moisture sensor icon" className="w-20 h-20" />
+          <h2 className="text-2xl font-bold">Moisture Sensor</h2>
+          <p className="text-xl">{sensors.moist}</p>
+        </div>
+        <div className="flex flex-col items-center space-y-2">
+          <img src="/img/open_lid.png" alt="lid icon" className="w-20 h-20" />
+          <h2 className="text-2xl font-bold">Lid Status</h2>
+          <p className="text-xl">{lidStat ? "Open" : "Closed"}</p>
+        </div>
+      </div>
+
 
       <div className="flex justify-center gap-4">
         <button

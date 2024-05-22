@@ -9,7 +9,7 @@ export default async function Login() {
       <Navbar />
       <div className="flex flex-col items-center my-14">
         <img
-          src="/img/logo_green.png"
+          src="/img/logo_SuperPot.png"
           alt="Logo"
           className="w-1/6 mt-[-30px]"
         />
