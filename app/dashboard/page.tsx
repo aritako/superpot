@@ -25,9 +25,8 @@ export default function Dashboard() {
   });
   const [manualLid, setManualLid] = useState<boolean>(false);
   const [lidStat, setLidStat] = useState<boolean>(false);
-  const [fetched, setFetched] = useState<boolean>(false);
-  const [authFlag, setAuthFlag] = useState<boolean>(false);
   const [copy, setCopy] = useState<boolean>(false);
+  const [userUID, setUserUID] = useState<string>("");
   //const [lightData, setLightData] = useState<LightSensorData[]>([]);
   // sample light data
   // const lightData = [
@@ -56,43 +55,40 @@ export default function Dashboard() {
       console.error("Error signing out: ", error);
     }
   };
+
+  const fetchData = async () => {
+    const uid = auth.currentUser?.uid!;
+    console.log("uid: ", uid);
+    if (!uid) {
+      return;
+    }
+    const sensData = await ReadData(uid, "sens");
+    const actuData = await ReadData(uid, "actu");
+    setSensors(sensData);
+    setLidStat(actuData.lidOpen);
+    if (!copy) {
+      setManualLid(actuData.lidOpen);
+      setCopy(true);
+    }
+    setLightData((prevData) => [
+      ...prevData.slice(-9),
+      { timestamp: new Date(), light: sensData.light },
+    ]);
+
+    setMoistData((prevData) => [
+      ...prevData.slice(-9),
+      { timestamp: new Date(), moist: sensData.moist },
+    ]);
+  };
+
   const handleSubmit = async () => {
-    await SetData("123", !manualLid);
+    const uid = sessionStorage.getItem("uid")!;
+    await SetData(uid, !manualLid);
+    setLidStat(!manualLid);
     setManualLid(!manualLid);
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const sensData = await ReadData("123", "sens");
-      const actuData = await ReadData("123", "actu");
-      setSensors(sensData);
-      setLidStat(actuData.lidOpen);
-      if (!copy) {
-        setManualLid(actuData.lidOpen);
-        setCopy(true);
-      }
-      console.log(sensData, actuData);
-      // Adding light reading to the array
-      // setLightData((prevData) => [
-      //   ...prevData,
-      //   { timestamp: new Date(), light: sensData.light },
-      // ]);
-
-      // Adding moisture reading to the array
-      setLightData((prevData) => [
-        ...prevData.slice(-9),
-        { timestamp: new Date(), light: sensData.light },
-      ]);
-
-      setMoistData((prevData) => [
-        ...prevData.slice(-9),
-        { timestamp: new Date(), moist: sensData.moist },
-      ]);
-
-      console.log(lightData);
-      console.log(moistData);
-    };
-
     const interval = setInterval(() => {
       fetchData();
     }, 3000);
@@ -100,47 +96,12 @@ export default function Dashboard() {
     return () => clearInterval(interval);
   }, []);
 
-  // auth.onAuthStateChanged(async (user) => {
-  //   if (user && !fetched && !authFlag) {
-  //     setAuthFlag(true);
-  //     setFetched(true);
-  //     const sensData = await ReadData(user.uid, "sens");
-  //     const actuData = await ReadData(user.uid, "actu");
-  //     setSensors(sensData);
-  //     setLidStat(actuData.lidOpen);
-  //     if (!copy) {
-  //       setManualLid(actuData.lidOpen);
-  //       setCopy(true);
-  //     }
-  //     console.log(sensData, actuData);
-  //     // Adding light reading to the array
-  //     // setLightData((prevData) => [
-  //     //   ...prevData,
-  //     //   { timestamp: new Date(), light: sensData.light },
-  //     // ]);
-
-  //     // Adding moisture reading to the array
-  //     setLightData((prevData) => [
-  //       ...prevData.slice(-9),
-  //       { timestamp: new Date(), light: sensData.light },
-  //     ]);
-
-  //     setMoistData((prevData) => [
-  //       ...prevData.slice(-9),
-  //       { timestamp: new Date(), moist: sensData.moist },
-  //     ]);
-
-  //     console.log(lightData);
-  //     console.log(moistData);
-
-  //     setAuthFlag(false);
-  //   }
-
   return (
     <section className="flex-grow lg:p-12 sm:p-6 p-6 bg-gradient-to-b from-green-200 to-green-50">
       <Navbar />
       <button
         onClick={() => {
+          sessionStorage.removeItem("uid");
           signOut();
         }}
       >
@@ -160,7 +121,7 @@ export default function Dashboard() {
         <button
           className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
           onClick={() => {
-            setFetched(false);
+            fetchData();
           }}
         >
           Refresh
