@@ -4,7 +4,7 @@ import { ref, get, set } from "firebase/database";
 export async function ReadData(uid: string, path: string) {
     try {
         console.log("Getting data");
-        const sensRef = ref(database, `users/MDKPitgeP9SqreHsc1yw7RcS8yy1/${path}`);
+        const sensRef = ref(database, `users/${uid}/${path}`);
         const snapshot = await get(sensRef);
         if (snapshot.exists()) {
             return snapshot.val();
@@ -18,7 +18,7 @@ export async function ReadData(uid: string, path: string) {
 
 export async function SetData(uid: string, data: boolean) {
     try {
-        const dbRef = ref(database, `users/MDKPitgeP9SqreHsc1yw7RcS8yy1/actu/lidOpen`);
+        const dbRef = ref(database, `users/${uid}/actu/lidOpen`);
         await set(dbRef, data);
     } catch (error) {
         console.log("Error updating data:", error);

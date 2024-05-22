@@ -19,6 +19,7 @@ type LightSensorData = { timestamp: Date; light: number };
 type MoistSensorData = { timestamp: Date; moist: number };
 
 export default function Dashboard() {
+  const uid = 'MDKPitgeP9SqreHsc1yw7RcS8yy1';
   const [sensors, setSensors] = useState<sensorData>({
     light: 0,
     moist: 0,
