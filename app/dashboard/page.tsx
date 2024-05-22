@@ -9,7 +9,7 @@ import MoistureSensorChart from "@/components/MoistureSensorChart";
 // import { auth } from "../../firebase";
 // import { ref, get, onValue, set } from "firebase/database";
 // import { unsubscribe } from "diagnostics_channel";
-import { signOut } from "next-auth/react";
+// import { signOut } from "next-auth/react";
 
 type sensorData = {
   light: number;
