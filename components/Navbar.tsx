@@ -11,10 +11,10 @@ export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
     { name: "Docs", href: "/docs" },
   ];
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     if (confirm("Are you sure you want to logout?")) {
       sessionStorage.removeItem("uid");
-      await signOut();
+      signOut();
     }
   };
 
