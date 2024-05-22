@@ -9,6 +9,7 @@ import { ref, get, onValue, set } from "firebase/database";
 import LightSensorChart from "@/components/LightSensorChart";
 import MoistureSensorChart from "@/components/MoistureSensorChart";
 import { unsubscribe } from "diagnostics_channel";
+import { signOut } from "next-auth/react";
 
 type sensorData = {
   light: number;
@@ -47,30 +48,23 @@ export default function Dashboard() {
     },
   });
 
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      // User is now signed out
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
+  };
   const handleSubmit = async () => {
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        await SetData(user.uid, !manualLid);
-        setCopy(false);
-        setFetched(false);
-      }
-    });
+    await SetData("123", !manualLid);
+    setManualLid(!manualLid);
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setFetched(false);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  auth.onAuthStateChanged(async (user) => {
-    if (user && !fetched && !authFlag) {
-      setAuthFlag(true);
-      setFetched(true);
-      const sensData = await ReadData(user.uid, "sens");
-      const actuData = await ReadData(user.uid, "actu");
+    const fetchData = async () => {
+      const sensData = await ReadData("123", "sens");
+      const actuData = await ReadData("123", "actu");
       setSensors(sensData);
       setLidStat(actuData.lidOpen);
       if (!copy) {
@@ -97,26 +91,65 @@ export default function Dashboard() {
 
       console.log(lightData);
       console.log(moistData);
+    };
 
-      setAuthFlag(false);
-    }
-  });
+    const interval = setInterval(() => {
+      fetchData();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // auth.onAuthStateChanged(async (user) => {
+  //   if (user && !fetched && !authFlag) {
+  //     setAuthFlag(true);
+  //     setFetched(true);
+  //     const sensData = await ReadData(user.uid, "sens");
+  //     const actuData = await ReadData(user.uid, "actu");
+  //     setSensors(sensData);
+  //     setLidStat(actuData.lidOpen);
+  //     if (!copy) {
+  //       setManualLid(actuData.lidOpen);
+  //       setCopy(true);
+  //     }
+  //     console.log(sensData, actuData);
+  //     // Adding light reading to the array
+  //     // setLightData((prevData) => [
+  //     //   ...prevData,
+  //     //   { timestamp: new Date(), light: sensData.light },
+  //     // ]);
+
+  //     // Adding moisture reading to the array
+  //     setLightData((prevData) => [
+  //       ...prevData.slice(-9),
+  //       { timestamp: new Date(), light: sensData.light },
+  //     ]);
+
+  //     setMoistData((prevData) => [
+  //       ...prevData.slice(-9),
+  //       { timestamp: new Date(), moist: sensData.moist },
+  //     ]);
+
+  //     console.log(lightData);
+  //     console.log(moistData);
+
+  //     setAuthFlag(false);
+  //   }
 
   return (
     <section className="flex-grow lg:p-12 sm:p-6 p-6 bg-gradient-to-b from-green-200 to-green-50">
       <Navbar />
+      <button
+        onClick={() => {
+          signOut();
+        }}
+      >
+        Logout
+      </button>
       <div className="flex justify-center flex-col gap-10">
         <div className="flex gap-4 justify-center">
-          <LightSensorChart
-            data={lightData.filter((_, idx) => {
-              return idx % 2 === 0;
-            })}
-          />
-          <MoistureSensorChart
-            data={moistData.filter((_, idx) => {
-              return idx % 2 === 0;
-            })}
-          />
+          <LightSensorChart data={lightData} />
+          <MoistureSensorChart data={moistData} />
         </div>
       </div>
       <p>Light Sensor: {sensors.light}</p>
