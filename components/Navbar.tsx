@@ -1,4 +1,5 @@
 import React from "react";
+import { signOut } from "next-auth/react";  
 import AuthButton from "./AuthButton";
 
 export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
