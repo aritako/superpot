@@ -57,6 +57,12 @@ export default function LineChart({ data }: { data: DataPoint[] }) {
             ],
           }}
           options={{
+            scales: {
+              y: {
+                min: 0,
+                max: 100,
+              }
+            },
             plugins: {
               title: {
                 display: true,
