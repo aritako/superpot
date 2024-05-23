@@ -60,7 +60,6 @@ export default function Dashboard() {
   };
 
   const handleSubmit = async () => {
-    const uid = sessionStorage.getItem("uid")!;
     await SetData(uid, !manualLid);
     setLidStat(!manualLid);
     setManualLid(!manualLid);
