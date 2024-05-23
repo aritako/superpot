@@ -12,7 +12,7 @@ export default function Home() {
       <section className="p-4">
         <Navbar />
       </section>
-      <section className="flex justify-center gap-10 w-full w-[100%]">
+      <section className="flex justify-center gap-10 w-full">
         <div className = "w-full max-w-6xl">
           <div className = "flex flex-col gap-8">
             <span className = "krona_one lg:text-7xl text-white m-auto">Monitor your Harvest.</span>
