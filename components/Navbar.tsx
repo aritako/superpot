@@ -1,5 +1,5 @@
 import React from "react";
-import { signOut } from "next-auth/react";
+import AuthButton from "./AuthButton";
 
 export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
   const navBarFont =
@@ -10,13 +10,6 @@ export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
     { name: "Dashboard", href: hasLogin ? "/dashboard" : "/login" },
     { name: "Docs", href: "/docs" },
   ];
-
-  const handleLogout = () => {
-    if (confirm("Are you sure you want to logout?")) {
-      sessionStorage.removeItem("uid");
-      signOut();
-    }
-  };
 
   return (
     <div className="flex justify-center">
@@ -30,15 +23,7 @@ export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
             {item.name}
           </a>
         ))}
-        {hasLogin ? (
-          <button className={navBarFont} onClick={handleLogout}>
-            Logout
-          </button>
-        ) : (
-          <a href="/login" className={navBarFont}>
-            Login
-          </a>
-        )}
+        <AuthButton />
       </nav>
     </div>
   );

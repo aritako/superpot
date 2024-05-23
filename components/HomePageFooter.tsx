@@ -11,7 +11,7 @@ const Person = ({ name, email }: PersonProps) => (
 );
 
 const people = [
-  { name: "Atienza, Carmelo Ellezandro", email: "cratienza@up.edu.ph" },
+  { name: "Atienza, Carmelo Ellezandro", email: "cratienza1@up.edu.ph" },
   { name: "Castañeda, Kristina Cassandra", email: "krcastaneda1@up.edu.ph" },
   { name: "Dispo, Vincent Angelo", email: "vdispo@up.edu.ph" },
   { name: "Ducay, James Daniel", email: "jpducay@up.edu.ph" },
