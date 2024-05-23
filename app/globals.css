@@ -80,9 +80,19 @@
 }
 
 .light-sensor-card {
-  background-color:  #fffae6; 
+  background-color:  #fffae6;  
 }
 
 .moisture-sensor-card {
   background-color: #E1F5FE; 
+}
+
+.curr-read-card {
+  background-color:  #DFFFD6;  
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
 }

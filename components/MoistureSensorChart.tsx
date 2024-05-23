@@ -32,7 +32,7 @@ type DataPoint = { timestamp: Date; moist: number };
 
 export default function LineChart({ data }: { data: DataPoint[] }) {
   return (
-    <Card className="moisture-sensor-card w-5/12 border border-green-300">
+    <Card className="moisture-sensor-card w-1/2 border border-green-300">
       <CardHeader>
         <CardTitle className="flex items-center gap-1 font-normal">
           💧 Moisture Sensor
@@ -41,7 +41,7 @@ export default function LineChart({ data }: { data: DataPoint[] }) {
           This is the moisture level in the soil!
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="chart-container">
         <Line
           data={{
             labels: data.map((item) => {
@@ -61,7 +61,7 @@ export default function LineChart({ data }: { data: DataPoint[] }) {
               y: {
                 min: 0,
                 max: 100,
-              }
+              },
             },
             plugins: {
               title: {

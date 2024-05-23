@@ -6,6 +6,7 @@ import { use, useEffect, useState } from "react";
 import { ReadData, SetData } from "../../components/RealtimeDatabase";
 import LightSensorChart from "@/components/LightSensorChart";
 import MoistureSensorChart from "@/components/MoistureSensorChart";
+import CurrentReadings from "@/components/CurrentReadings";
 // import { auth } from "../../firebase";
 // import { ref, get, onValue, set } from "firebase/database";
 // import { unsubscribe } from "diagnostics_channel";
@@ -44,8 +45,11 @@ export default function Dashboard() {
   const fetchData = async () => {
     const sensData = await ReadData(uid, "sens");
     const actuData = await ReadData(uid, "actu");
-    const moistPercent = 100 - ((sensData.moist / 1023) * 100);
-    setSensors({ light: sensData.light, moist: Math.round(moistPercent * 100) / 100 });
+    const moistPercent = 100 - (sensData.moist / 1023) * 100;
+    setSensors({
+      light: sensData.light,
+      moist: Math.round(moistPercent * 100) / 100,
+    });
     console.log(sensors);
     setLidStat(actuData.lidOpen);
     if (!copy) {
@@ -80,59 +84,38 @@ export default function Dashboard() {
   return (
     <section className="flex-grow lg:p-12 sm:p-6 p-6 bg-gradient-to-b from-green-200 to-green-50">
       <Navbar hasLogin={true} />
-
       <div className="flex justify-center flex-col gap-10">
         <div className="flex gap-4 justify-center">
           <LightSensorChart data={lightData} />
           <MoistureSensorChart data={moistData} />
-        </div>
-      </div>
-      <div className="flex items-center justify-center space-x-10 p-10 rounded-lg">
-        <div className="flex flex-col items-center space-y-2">
-          <img
-            src="/img/light_sensor.png"
-            alt="light sensor icon"
-            className="w-20 h-20"
+          <CurrentReadings
+            light={sensors.light}
+            moist={sensors.moist}
+            lidStat={lidStat}
           />
-          <h2 className="text-2xl font-bold">Light Sensor</h2>
-          <p className="text-xl">{sensors.light} lux</p>
         </div>
-        <div className="flex flex-col items-center space-y-2">
-          <img
-            src="/img/moisture_sensor.png"
-            alt="moisture sensor icon"
-            className="w-20 h-20"
-          />
-          <h2 className="text-2xl font-bold">Moisture Sensor</h2>
-          <p className="text-xl">{sensors.moist} %</p>
-        </div>
-        <div className="flex flex-col items-center space-y-2">
-          <img src="/img/open_lid.png" alt="lid icon" className="w-20 h-20" />
-          <h2 className="text-2xl font-bold">Lid Status</h2>
-          <p className="text-xl">{lidStat ? "Open" : "Closed"}</p>
-        </div>
-      </div>
 
-      <div className="flex justify-center gap-4">
-        <button
-          className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-          onClick={() => {
-            fetchData();
-          }}
-        >
-          Refresh
-        </button>
-        <button
-          className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-          onClick={handleSubmit}
-        >
-          {manualLid ? "Close Lid" : "Open Lid"}
-        </button>
-        {/* Water plant button not yet implemented*/}
-        <button className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
-          Water Plant
-          {/* manualWater ? "Stop" : "Water Plant*/}
-        </button>
+        <div className="flex justify-center gap-4">
+          <button
+            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+            onClick={() => {
+              fetchData();
+            }}
+          >
+            Refresh
+          </button>
+          <button
+            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+            onClick={handleSubmit}
+          >
+            {manualLid ? "Close Lid" : "Open Lid"}
+          </button>
+          {/* Water plant button not yet implemented*/}
+          <button className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+            Water Plant
+            {/* manualWater ? "Stop" : "Water Plant*/}
+          </button>
+        </div>
       </div>
     </section>
   );
