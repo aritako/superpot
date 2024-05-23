@@ -1,5 +1,4 @@
 import React from "react";
-import { signOut } from "next-auth/react";  
 import AuthButton from "./AuthButton";
 
 export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
@@ -11,12 +10,6 @@ export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
     { name: "Dashboard", href: hasLogin ? "/dashboard" : "/login" },
     { name: "Docs", href: "/docs" },
   ];
-
-  const handleLogout = () => {
-    if (confirm("Are you sure you want to logout?")) {
-      signOut();
-    }
-  };
 
   return (
     <div className="flex justify-center">
@@ -30,7 +23,7 @@ export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
             {item.name}
           </a>
         ))}
-        <AuthButton />
+        <AuthButton hasLogin={hasLogin} />
       </nav>
     </div>
   );
