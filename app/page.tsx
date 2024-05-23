@@ -12,11 +12,13 @@ export default function Home() {
       <section className="p-4">
         <Navbar />
       </section>
-      <section className="flex justify-center gap-10 w-full">
+      <section className="flex justify-center gap-10 w-full p-4">
         <div className = "w-full max-w-6xl">
           <div className = "flex flex-col gap-8">
-            <span className = "krona_one lg:text-7xl text-white m-auto">Monitor your Harvest.</span>
-            <span className = "h-24 krona_one lg:text-7xl bg-gradient-to-b from-teal-500 from 10% to-amber-300 bg-clip-text text-transparent m-auto">Anytime, Anywhere.</span>
+            <span className = "krona_one xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-4xl text-white text-center">Monitor your Harvest.</span>
+            <span className = "lg:h-[5rem] sm:h-[4rem] krona_one xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl bg-gradient-to-b from-teal-500 from 10% to-amber-300 bg-clip-text inline-block text-transparent text-center">
+              Anytime, Anywhere.
+            </span>
           </div>
         </div>
           {/* <span className="krona_one lg:text-7xl sm:text-7xl text-5xl text-white font-medium text-center">
