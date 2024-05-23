@@ -4,6 +4,9 @@ import Navbar from "@/components/Navbar";
 import HomePageFooter from "@/components/HomePageFooter";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -12,13 +15,19 @@ export default function Home() {
       <section className="sticky top-0 p-4">
         <Navbar />
       </section>
-      <section className="flex justify-center gap-10 w-full p-4">
+      <section className="flex justify-center w-full p-4">
         <div className = "w-full max-w-6xl">
-          <div className = "flex flex-col gap-8">
+          <div className = "flex flex-col gap-8 mb-12">
             <span className = "krona_one xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-4xl text-white text-center">Monitor your Harvest.</span>
             <span className = "krona_one xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl text-center text-sgreen">
               Anytime, Anywhere.
             </span>
+          </div>
+          <div className = "flex justify-center">
+          {/* bg-gradient-to-b from-sgreen from-10% to-[#3d6a2a] hover:from-[#3d6a2a] */}
+            <Button className = "bg-sgreen text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300">
+              <Link href="/login" className = "flex items-center">Get Started&nbsp;<ChevronRight className="h-4 w-4 "/></Link>
+            </Button>
           </div>
         </div>
       </section>
