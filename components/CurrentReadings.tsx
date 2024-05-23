@@ -36,7 +36,7 @@ export default function CurrentReadings(curRead: CurrentReadingsProps) {
             <img
               src="/img/light_sensor.png"
               alt="light sensor icon"
-              className="w-20 h-20"
+              className="w-full h-full"
             />
             <h2 className="text-xl font-bold">Light Sensor</h2>
             <p className="text-xl">{curRead.light} lux</p>
@@ -45,13 +45,17 @@ export default function CurrentReadings(curRead: CurrentReadingsProps) {
             <img
               src="/img/moisture_sensor.png"
               alt="moisture sensor icon"
-              className="w-20 h-20"
+              className="w-full h-full"
             />
             <h2 className="text-xl font-bold">Moisture Sensor</h2>
             <p className="text-xl">{curRead.moist} %</p>
           </div>
           <div className="flex flex-col items-center space-y-2">
-            <img src="/img/open_lid.png" alt="lid icon" className="w-20 h-20" />
+            <img
+              src="/img/open_lid.png"
+              alt="lid icon"
+              className="w-full h-full"
+            />
             <h2 className="text-xl font-bold">Lid Status</h2>
             <p className="text-xl">{curRead.lidStat ? "Open" : "Closed"}</p>
           </div>
