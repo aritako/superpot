@@ -13,7 +13,6 @@ export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
 
   const handleLogout = () => {
     if (confirm("Are you sure you want to logout?")) {
-      sessionStorage.removeItem("uid");
       signOut();
     }
   };
