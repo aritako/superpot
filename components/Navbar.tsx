@@ -17,7 +17,7 @@ export default function Navbar() {
           <a
             key={item.name}
             href={item.href}
-            className="h-1/2 text-sm flex items-center rounded-full px-3 text-white hover:bg-slate-800 transition duration-300 ease-in-out"
+            className="h-[36px] text-sm flex items-center rounded-full px-3 text-white hover:bg-slate-800 transition duration-300 ease-in-out"
           >
             {item.name}
           </a>
