@@ -24,6 +24,8 @@ export default function Dashboard() {
     light: 0,
     moist: 0,
   });
+  const [lightSens, setLightSens] = useState<number>(0);
+  const [moistSens, setMoistSens] = useState<number>(0);
   const [manualLid, setManualLid] = useState<boolean>(false);
   const [lidStat, setLidStat] = useState<boolean>(false);
   const [copy, setCopy] = useState<boolean>(false);
@@ -42,7 +44,9 @@ export default function Dashboard() {
   const fetchData = async () => {
     const sensData = await ReadData(uid, "sens");
     const actuData = await ReadData(uid, "actu");
-    setSensors(sensData);
+    const moistPercent = 100 - ((sensData.moist / 1023) * 100);
+    setSensors({ light: sensData.light, moist: Math.round(moistPercent * 100) / 100 });
+    console.log(sensors);
     setLidStat(actuData.lidOpen);
     if (!copy) {
       setManualLid(actuData.lidOpen);
@@ -55,7 +59,7 @@ export default function Dashboard() {
 
     setMoistData((prevData) => [
       ...prevData.slice(-9),
-      { timestamp: new Date(), moist: sensData.moist },
+      { timestamp: new Date(), moist: moistPercent },
     ]);
   };
 
@@ -91,7 +95,7 @@ export default function Dashboard() {
             className="w-20 h-20"
           />
           <h2 className="text-2xl font-bold">Light Sensor</h2>
-          <p className="text-xl">{sensors.light}</p>
+          <p className="text-xl">{sensors.light} lux</p>
         </div>
         <div className="flex flex-col items-center space-y-2">
           <img
@@ -100,7 +104,7 @@ export default function Dashboard() {
             className="w-20 h-20"
           />
           <h2 className="text-2xl font-bold">Moisture Sensor</h2>
-          <p className="text-xl">{sensors.moist}</p>
+          <p className="text-xl">{sensors.moist} %</p>
         </div>
         <div className="flex flex-col items-center space-y-2">
           <img src="/img/open_lid.png" alt="lid icon" className="w-20 h-20" />
