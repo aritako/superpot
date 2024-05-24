@@ -8,7 +8,7 @@ import Image from "next/image";
 export default async function Login() {
   return (
     <main>
-      <div className = "absolute -z-50 w-full h-64 bg-gradient-to-b from-[#7ED957]/30 to-transparent"></div>
+      <div className = "absolute -z-50 w-full h-64 bg-gradient-to-b from-sgreen/30 to-transparent"></div>
       <section className="sticky top-0 p-4">
         <Navbar />
       </section>
