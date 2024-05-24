@@ -22,6 +22,7 @@ module.exports = {
       },
       colors: {
         'sgreen': "#7ED957",
+        'sdgreen': "#3d6a2a",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

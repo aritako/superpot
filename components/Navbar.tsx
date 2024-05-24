@@ -8,7 +8,7 @@ export default function Navbar() {
   ];
   return (
     <div className="flex justify-center">
-      <nav className="h-[75px] flex bg-slate-950/80 mb-12 rounded-full border-2 border-slate-900/80 shadow-component px-6 py-2 max-w-6xl w-full items-center">
+      <nav className="h-[75px] flex bg-slate-950/95 mb-12 rounded-full border-2 border-slate-900/80 shadow-component px-6 py-2 max-w-6xl w-full items-center">
         <a href={"/"} className="flex items-center gap-1 mr-5">
           {/* <img src="/img/superpot-logo.png" alt="Logo" className="w-10 h-10" /> */}
           <span className="krona_one text-sgreen">SuperPot</span>
