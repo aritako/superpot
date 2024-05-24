@@ -3,6 +3,7 @@ import React, { FormEvent } from "react";
 import LoginForm from "./form";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import Image from "next/image";
 
 export default async function Login() {
   return (
@@ -11,7 +12,7 @@ export default async function Login() {
       <section className="sticky top-0 p-4">
         <Navbar />
       </section>
-      <section className = "flex justify-center w-full p-4">
+      <section className = "flex justify-center space-between w-full p-4">
         <div className = "flex flex-col gap-4 px-4 w-full max-w-6xl">
           <span className = "krona_one xl:text-5xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl text-white">
             Let's Get Started<span className = "text-sgreen">.</span>
@@ -21,12 +22,15 @@ export default async function Login() {
             <span>        
               <Link
                 href="/register"
-                className="text-sgreen hover:text-green-800 transition duration-300 ease-in-out rounded px-0.5"
+                className="text-sgreen hover:text-sdgreen transition duration-300 ease-in-out rounded px-0.5"
               >
                 Register.
               </Link>
             </span>
           </span>
+          <div className = "mt-8 max-w-md">
+            <LoginForm />
+          </div>
         </div>
       </section>
       {/* <section className="flex-grow lg:p-12 sm:p-6 p-6">

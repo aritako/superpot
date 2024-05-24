@@ -49,10 +49,10 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto">
+    <form onSubmit={handleSubmit}>
       <div className="mb-4">
         <input
-          className="border-0 shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-green-300"
+          className="border-0 shadow appearance-none border rounded-lg text-sm w-full py-2 px-3 text-gray-400 leading-tight bg-slate-900 transition ease-in-out duration-300"
           id="email"
           type="email"
           placeholder="Email"
@@ -63,7 +63,7 @@ export default function LoginForm() {
       </div>
       <div className="mb-1">
         <input
-          className="border-0 shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-green-300"
+          className="border-0 shadow appearance-none border rounded-lg text-sm w-full py-2 px-3 text-gray-400 leading-tight bg-slate-900 transition ease-in-out duration-300"
           id="password"
           type="password"
           placeholder="Password"
@@ -85,7 +85,7 @@ export default function LoginForm() {
         <Button
           variant="outline"
           type="submit"
-          className="w-full border-0 bg-sgreen text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300"
+          className="w-full border-0 bg-sgreen text-slate-950 hover:text-white hover:bg-sdgreen transition ease-in-out duration-300 rounded-lg"
         >
           Sign In
         </Button>
