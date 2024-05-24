@@ -33,11 +33,6 @@ export default async function Login() {
           </div>
         </div>
       </section>
-      {/* <section className="flex-grow lg:p-12 sm:p-6 p-6">
-        <div className="flex flex-col items-center justify-center">
-          <LoginForm />
-        </div>
-      </section> */}
     </main>
   );
 }
