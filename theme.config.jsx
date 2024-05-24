@@ -2,6 +2,7 @@ import Head from 'next/head';
 
 export default {
     primaryHue: 102,
+    primarySaturation: 40,
     logo:    
     <>
       <Head>
