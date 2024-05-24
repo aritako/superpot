@@ -4,36 +4,41 @@ import Navbar from "@/components/Navbar";
 import HomePageFooter from "@/components/HomePageFooter";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen">
-      <section className="flex-grow p-4 bg-gradient-to-b from-green-200 to-green-50">
-        <Navbar hasLogin={false} />
-        <div className="flex justify-center flex-col gap-10">
-          <span className="lg:text-9xl sm:text-7xl text-5xl text-green-600 font-medium text-center">
-            Super Pot.
-          </span>
-          <span className="lg:text-medium text-black-600 text-center mt-[-30px]">
-            Don't let your plants suffer while you're away - Experience the
-            <span className="font-semibold text-green-600 ">
-              {" "}
-              Super Pot
-            </span>{" "}
-            today! 🌱
-          </span>
-
-          <span className="text-center py">
-            An IoT Project{" "}
-            <span className="line-through text-green-600">Developed</span>{" "}
-            Currently Being Developed for CS 145
-          </span>
-          <span className="text-center py">Coming Soon...</span>
+      <div className = "absolute -z-50 w-full h-64 bg-gradient-to-b from-[#7ED957]/30 to-transparent"></div>
+      <section className="sticky top-0 p-4">
+        <Navbar hasLogin={false}/>
+      </section>
+      <section className="flex justify-center w-full p-4">
+        <div className = "w-full max-w-6xl">
+          <div className = "flex flex-col gap-8 mb-12">
+            <span className = "krona_one xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-4xl text-white text-center">Monitor your Harvest.</span>
+            <span className = "krona_one xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl text-center text-sgreen">
+              Anytime, Anywhere.
+            </span>
+          </div>
+          <div className = "flex justify-center">
+          {/* bg-gradient-to-b from-sgreen from-10% to-[#3d6a2a] hover:from-[#3d6a2a] */}
+            <Button className = "bg-sgreen text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300">
+              <Link href="/login" className = "flex items-center">Get Started&nbsp;<ChevronRight className="h-4 w-4 "/></Link>
+            </Button>
+          </div>
         </div>
       </section>
-
+      <section className="flex justify-center gap-10 w-full p-4">
+        <div className = "flex justify-center w-full max-w-6xl m-auto">
+          <img src = "/img/pot.png" alt = "SuperPot" className = "w-[40%]" />
+        </div>
+      </section>
+      
       <footer className="w-full">
-        <HomePageFooter />
+        {/* <HomePageFooter /> */}
       </footer>
     </main>
   );

@@ -17,7 +17,12 @@ module.exports = {
       },
     },
     extend: {
+      boxShadow: {
+        component: '0 4px 25px -12px rgba(255,255,255,0.25)',
+      },
       colors: {
+        'sgreen': "#7ED957",
+        'sdgreen': "#3d6a2a",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

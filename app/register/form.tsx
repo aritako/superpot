@@ -61,10 +61,10 @@ export default function RegisterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto">
+    <form onSubmit={handleSubmit}>
       <div className="mb-4">
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-green-300"
+          className="border-0 shadow appearance-none border rounded-lg text-sm w-full py-2 px-3 text-gray-400 leading-tight bg-slate-900 transition ease-in-out duration-300"
           type="email"
           placeholder="Email"
           name="email"
@@ -74,7 +74,7 @@ export default function RegisterForm() {
       </div>
       <div className="mb-4">
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-green-300"
+          className="border-0 shadow appearance-none border rounded-lg text-sm w-full py-2 px-3 text-gray-400 leading-tight bg-slate-900 transition ease-in-out duration-300"
           type="password"
           placeholder="Password"
           name="password"
@@ -84,7 +84,7 @@ export default function RegisterForm() {
       </div>
       <div className="mb-2">
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border border-green-300"
+          className="border-0 shadow appearance-none border rounded-lg text-sm w-full py-2 px-3 text-gray-400 leading-tight bg-slate-900 transition ease-in-out duration-300"
           type="password"
           placeholder="Confirm Password"
           name="repassword"
@@ -103,19 +103,10 @@ export default function RegisterForm() {
         <Button
           variant="outline"
           type="submit"
-          className="w-full bg-green-500 rounded"
+          className="w-full border-0 bg-sgreen text-slate-950 hover:text-white hover:bg-sdgreen transition ease-in-out duration-300 rounded-lg"
         >
           Sign Up
         </Button>
-      </div>
-      <div className="flex items-center justify-center gap-1 mt-2">
-        Already have an account?
-        <Link
-          href="/login"
-          className="text-green-500 hover:text-green-800 underline"
-        >
-          Login
-        </Link>
       </div>
     </form>
   );

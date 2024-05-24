@@ -2,25 +2,37 @@
 import React, { FormEvent } from "react";
 import LoginForm from "./form";
 import Navbar from "@/components/Navbar";
+import Link from "next/link";
+import Image from "next/image";
 
 export default async function Login() {
   return (
-    <section className="flex-grow lg:p-12 sm:p-6 p-6 bg-gradient-to-b from-green-200 to-green-50">
-      <Navbar hasLogin={false} />
-      <div className="flex flex-col items-center my-14">
-        <img
-          src="/img/logo_SuperPot.png"
-          alt="Logo"
-          className="w-1/6 mt-[-30px]"
-        />
-        <h1 className="text-2xl mt-[-30px]">Welcome Back! 🌱</h1>
-        <h1 className="text-large mb-[-25px]">
-          Please login to access the dashboard controls
-        </h1>
-      </div>
-      <div className="flex flex-col items-center justify-center">
-        <LoginForm />
-      </div>
-    </section>
+    <main>
+      <div className = "absolute -z-50 w-full h-64 bg-gradient-to-b from-sgreen/30 to-transparent"></div>
+      <section className="sticky top-0 p-4">
+        <Navbar hasLogin = {false}/>
+      </section>
+      <section className = "flex justify-center space-between w-full p-4">
+        <div className = "flex flex-col gap-4 px-4 w-full max-w-6xl">
+          <span className = "krona_one xl:text-5xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl text-white">
+            Let's Get Started<span className = "text-sgreen">.</span>
+          </span>
+          <span className = "text-gray-400">Just got a new 
+            <span className = "krona_one"> SuperPot</span>?&nbsp; 
+            <span>        
+              <Link
+                href="/register"
+                className="text-sgreen hover:text-sdgreen transition duration-300 ease-in-out rounded px-0.5"
+              >
+                Register.
+              </Link>
+            </span>
+          </span>
+          <div className = "mt-8 max-w-md">
+            <LoginForm />
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
