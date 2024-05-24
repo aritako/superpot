@@ -33,7 +33,7 @@ type DataPoint = { timestamp: Date; light: number };
 
 export default function LightSensorChart({ data }: { data: DataPoint[] }) {
   return (
-    <Card className="light-sensor-card w-1/3 border border-green-300">
+    <Card className="light-sensor-card w-1/2 border border-green-300">
       <CardHeader>
         <CardTitle className="flex items-center gap-1 font-normal ">
           <svg
@@ -50,7 +50,7 @@ export default function LightSensorChart({ data }: { data: DataPoint[] }) {
           This is how much sunlight your plants are getting!
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="chart-container">
         <Line
           data={{
             labels: data.map((item) => {

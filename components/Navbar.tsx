@@ -1,11 +1,16 @@
 import React from "react";
+import AuthButton from "./AuthButton";
 
-export default function Navbar() {
+export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
+  const navBarFont =
+    "text-sm flex items-center rounded-full px-3 text-slate-900 hover:bg-green-200 hover:text-slate-900 transition duration-300 ease-in-out";
+
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "Dashboard", href: "/login" },
+    { name: "Dashboard", href: hasLogin ? "/dashboard" : "/login" },
     { name: "Docs", href: "/docs" },
   ];
+
   return (
     <div className="flex justify-center">
       <nav className="h-[75px] flex bg-slate-950/95 mb-12 rounded-full border-2 border-slate-900/80 shadow-component px-6 py-2 max-w-6xl w-full items-center">
@@ -22,6 +27,7 @@ export default function Navbar() {
             {item.name}
           </a>
         ))}
+        <AuthButton hasLogin={hasLogin} />
       </nav>
     </div>
   );
