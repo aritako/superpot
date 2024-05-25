@@ -28,7 +28,9 @@ export default function Dashboard() {
   const [lightSens, setLightSens] = useState<number>(0);
   const [moistSens, setMoistSens] = useState<number>(0);
   const [manualLid, setManualLid] = useState<boolean>(false);
+  const [manualWater, setManualWater] = useState<boolean>(false);
   const [lidStat, setLidStat] = useState<boolean>(false);
+  const [waterStat, setWaterStat] = useState<boolean>(false);
   const [copy, setCopy] = useState<boolean>(false);
   // const [userUID, setUserUID] = useState<string>("");
 
@@ -45,13 +47,14 @@ export default function Dashboard() {
   const fetchData = async () => {
     const sensData = await ReadData(uid, "sens");
     const actuData = await ReadData(uid, "actu");
-    const moistPercent = 100 - (sensData.moist / 1023) * 100;
+    const moistPercent = 100 - (sensData.moist / 1024) * 100;
     setSensors({
       light: sensData.light,
       moist: Math.round(moistPercent * 100) / 100,
     });
     console.log(sensors);
     setLidStat(actuData.lidOpen);
+
     if (!copy) {
       setManualLid(actuData.lidOpen);
       setCopy(true);
@@ -67,10 +70,16 @@ export default function Dashboard() {
     ]);
   };
 
-  const handleSubmit = async () => {
-    await SetData(uid, !manualLid);
+  const handleLidButton = async () => {
+    await SetData(uid, !manualLid, "lidOpen");
     setLidStat(!manualLid);
     setManualLid(!manualLid);
+  };
+
+  const handleWaterButton = async () => {
+    await SetData(uid, !manualWater, "waterOpen");
+    setWaterStat(!manualWater);
+    setManualWater(!manualWater);
   };
 
   useEffect(() => {
@@ -106,12 +115,15 @@ export default function Dashboard() {
           </button>
           <button
             className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-            onClick={handleSubmit}
+            onClick={handleLidButton}
           >
-            {manualLid ? "Close Lid" : "Open Lid"}
+            {manualLid ? "Open Lid" : "Close Lid"}
           </button>
           {/* Water plant button not yet implemented*/}
-          <button className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+          <button
+            className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
+            onClick={handleWaterButton}
+          >
             Water Plant
             {/* manualWater ? "Stop" : "Water Plant*/}
           </button>
