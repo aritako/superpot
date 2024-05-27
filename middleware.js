@@ -1,19 +1,19 @@
 import { NextResponse } from 'next/server'
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from './firebase';
 import { getSession } from "next-auth/react";
+import {withAuth} from 'next-auth/middleware';
+import { cookies } from 'next/headers';
 
 export async function middleware(request) {
-  const session = await getSession({ req: request });
-  if(session){
-    return NextResponse.next()
+  const cookieStore = cookies(request);
+  const sessionCookie = cookieStore.get('next-auth.session-token');
+
+  if (sessionCookie) {
+    return NextResponse.next();
   } else {
-    return NextResponse.redirect(
-      new URL('/', request.url)
-    )
+    return NextResponse.redirect(new URL('/login', request.url));
   }
 }
- 
+
 export const config = {
-  matcher: '/dashboard',
+  matcher: ['/dashboard'],
 }

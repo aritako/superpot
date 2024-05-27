@@ -19,12 +19,11 @@ export default function LoginForm() {
     password: "",
   });
   const [error, setError] = useState<string | null>(null);
-
   const { data: session } = useSession();
   if (session) {
     redirect("/dashboard");
   }
-
+  // console.log(session)
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({
@@ -45,7 +44,9 @@ export default function LoginForm() {
       setError("Email or password is incorrect");
     } else if (response?.error === "ConfigurationError") {
       setError("Invalid action");
-    } 
+    } else if (response?.ok){
+      redirect("/dashboard");
+    }
   };
 
   return (

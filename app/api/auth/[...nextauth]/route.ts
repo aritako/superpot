@@ -5,7 +5,7 @@ import { auth } from "../../../../firebase";
 
 const handler = NextAuth({
   pages: {
-    signIn: "/auth/login",
+    signIn: "/login",
   },
   secret: process.env.NEXTAUTH_SECRET,
   providers: [

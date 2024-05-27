@@ -12,7 +12,7 @@ const navbarItemStyle = "rounded-lg text-sm flex items-center px-4 py-3 text-whi
 
 export default function Sidebar(){
   const handleLogout = () => {
-      const doLogout = async () => {
+    const doLogout = async () => {
       if (confirm("Are you sure you want to logout?")) {
           await signOut();
           redirect("/")

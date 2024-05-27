@@ -1,7 +1,9 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import AuthButton from "./AuthButton";
 import Link from "next/link";
 import { Button } from "@/components/ui/button"
+import { getSession, useSession } from "next-auth/react";
 
 export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
   const navBarFont =
@@ -9,7 +11,7 @@ export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
 
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "Dashboard", href: hasLogin ? "/dashboard" : "/login" },
+    { name: "Dashboard", href: hasLogin ? "/login": "/dashboard"},
     { name: "Docs", href: "/docs" },
   ];
 
