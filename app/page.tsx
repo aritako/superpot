@@ -22,7 +22,6 @@ export default function Home() {
             </span>
           </div>
           <div className = "flex justify-center">
-          {/* bg-gradient-to-b from-sgreen from-10% to-[#3d6a2a] hover:from-[#3d6a2a] */}
             <Button className = "bg-sgreen text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300">
               <Link href="/login" className = "flex items-center">Get Started&nbsp;<ChevronRight className="h-4 w-4 "/></Link>
             </Button>
