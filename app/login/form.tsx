@@ -44,8 +44,6 @@ export default function LoginForm() {
       setError("Email or password is incorrect");
     } else if (response?.error === "ConfigurationError") {
       setError("Invalid action");
-    } else if (response?.ok){
-      redirect("/dashboard");
     }
   };
 
