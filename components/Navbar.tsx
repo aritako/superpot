@@ -33,9 +33,10 @@ export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
         </div>
         <div className = "flex gap-1">
           <AuthButton hasLogin={hasLogin} />
+          {!hasLogin && (
           <Button className = "bg-sgreen rounded-full h-[36px] px-3 text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300">
               <Link href="/register" className = "flex items-center">Sign Up</Link>
-          </Button>
+          </Button>)}
         </div>
       </nav>
     </div>

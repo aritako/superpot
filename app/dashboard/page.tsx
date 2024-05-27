@@ -82,7 +82,7 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <section className="flex-grow lg:p-12 sm:p-6 p-6 bg-gradient-to-b from-green-200 to-green-50">
+    <section className="flex-grow lg:p-12 sm:p-6 p-6">
       <Navbar hasLogin={true} />
       <div className="flex justify-center flex-col gap-10">
         <div className="h-80 flex gap-4 justify-center">
