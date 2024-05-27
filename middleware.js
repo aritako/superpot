@@ -1,6 +1,4 @@
 import { NextResponse } from 'next/server'
-import { getSession } from "next-auth/react";
-import {withAuth} from 'next-auth/middleware';
 import { cookies } from 'next/headers';
 
 export async function middleware(request) {
