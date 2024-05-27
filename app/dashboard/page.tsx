@@ -84,14 +84,17 @@ export default function Dashboard() {
 
   return (
     <div className = "flex items-start justify-between">
-      <Sidebar />
-      <section className="flex-grow lg:p-12 sm:p-6 p-6 w-full h-full">
-        {/* <Navbar hasLogin={true} /> */}
+      <Sidebar/>
+      {/* <div className = "absolute -z-50 w-full h-64 bg-gradient-to-b from-sgreen/30 to-transparent"></div> */}
+      <section className="flex-grow px-8 py-4 w-full h-full">
+        <div className = "mb-4">
+          <span className = "krona_one text-white text-3xl">Dashboard</span>
+        </div>
         <div className="flex justify-center flex-col gap-10">
-          <div className="h-80 flex gap-4 justify-center">
-            {/* <LightSensorChart data={lightData} />
-            <MoistureSensorChart data={moistData} />
-            <CurrentReadings
+          <div className="h-50 flex gap-4 justify-center flex flex-col">
+            <LightSensorChart data={lightData} />
+            {/* <MoistureSensorChart data={moistData} /> */}
+            {/* <CurrentReadings
               light={sensors.light}
               moist={sensors.moist}
               lidStat={lidStat}
