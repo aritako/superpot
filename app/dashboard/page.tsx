@@ -35,14 +35,6 @@ export default function Dashboard() {
 
   const [lightData, setLightData] = useState<LightSensorData[]>([]);
   const [moistData, setMoistData] = useState<MoistSensorData[]>([]);
-
-  const session = useSession({
-    required: true,
-    onUnauthenticated() {
-      redirect("/login");
-    },
-  });
-
   const fetchData = async () => {
     const sensData = await ReadData(uid, "sens");
     const actuData = await ReadData(uid, "actu");
