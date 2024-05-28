@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import {
   Card,
   CardContent,
@@ -32,16 +32,16 @@ type DataPoint = { timestamp: Date; moist: number };
 
 export default function LineChart({ data }: { data: DataPoint[] }) {
   return (
-    <Card className="moisture-sensor-card w-1/2 border border-green-300">
+    <Card className="bg-slate-950 border border-slate-800 w-1/2">
       <CardHeader>
         <CardTitle className="flex items-center gap-1 font-normal">
-          💧 Moisture Sensor
+          <span className = "text-white krona_one">Moisture</span>
         </CardTitle>
         <CardDescription>
           This is the moisture level in the soil!
         </CardDescription>
       </CardHeader>
-      <CardContent className="chart-container">
+      <CardContent className="chart-container w-full">
         <Line
           data={{
             labels: data.map((item) => {
@@ -57,6 +57,9 @@ export default function LineChart({ data }: { data: DataPoint[] }) {
             ],
           }}
           options={{
+            responsive: true,
+            maintainAspectRatio: false,
+            aspectRatio: 2,
             scales: {
               y: {
                 min: 0,
@@ -67,10 +70,17 @@ export default function LineChart({ data }: { data: DataPoint[] }) {
               title: {
                 display: true,
                 text: "Moisture Sensor Reading",
+                font: {
+                  family: "var(--font-krona-one)",
+                },
+                color: "white",
               },
               legend: {
                 display: true,
                 position: "bottom",
+                labels: {
+                  color: "white",
+                },
               },
             },
           }}

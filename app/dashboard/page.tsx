@@ -85,7 +85,7 @@ export default function Dashboard() {
         <div className="flex justify-center flex-col gap-10">
           <div className="h-50 flex gap-4 justify-center flex flex-col">
             <LightSensorChart data={lightData} />
-            {/* <MoistureSensorChart data={moistData} /> */}
+            <MoistureSensorChart data={moistData} />
             {/* <CurrentReadings
               light={sensors.light}
               moist={sensors.moist}

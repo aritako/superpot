@@ -50,7 +50,7 @@ export default function LightSensorChart({ data }: { data: DataPoint[] }) {
           This is how much sunlight your plants are getting!
         </CardDescription>
       </CardHeader>
-      <CardContent className="chart-container">
+      <CardContent className="chart-container w-full">
         <Line
           data={{
             labels: data.map((item) => {
@@ -67,6 +67,9 @@ export default function LightSensorChart({ data }: { data: DataPoint[] }) {
             ],
           }}
           options={{
+            responsive: true,
+            maintainAspectRatio: false,
+            aspectRatio: 2,
             plugins: {
               title: {
                 display: true,
@@ -78,6 +81,9 @@ export default function LightSensorChart({ data }: { data: DataPoint[] }) {
               legend: {
                 display: true,
                 position: "bottom",
+                labels: {
+                  color: "white",
+                },
               },
             },
           }}
