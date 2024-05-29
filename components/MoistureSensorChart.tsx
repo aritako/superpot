@@ -51,7 +51,8 @@ export default function LineChart({ data }: { data: DataPoint[] }) {
               {
                 label: "Moisture Level in %",
                 data: data.map((item) => item.moist),
-                backgroundColor: ["#0096FF"],
+                backgroundColor: ["#67e8f9"],
+                borderColor: ["#67e8f9"],
                 borderWidth: 1,
               },
             ],

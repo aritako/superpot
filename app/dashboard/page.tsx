@@ -8,6 +8,7 @@ import LightSensorChart from "@/components/LightSensorChart";
 import MoistureSensorChart from "@/components/MoistureSensorChart";
 import CurrentReadings from "@/components/CurrentReadings";
 import Sidebar from "@/components/Sidebar";
+import { Button } from "@/components/ui/button";
 // import { auth } from "../../firebase";
 // import { ref, get, onValue, set } from "firebase/database";
 // import { unsubscribe } from "diagnostics_channel";
@@ -88,33 +89,30 @@ export default function Dashboard() {
               <LightSensorChart data={lightData} />
               <MoistureSensorChart data={moistData} />
             </div>
-            {/* <CurrentReadings
+            <CurrentReadings
               light={sensors.light}
               moist={sensors.moist}
               lidStat={lidStat}
-            /> */}
+            />
           </div>
 
           <div className="flex justify-center gap-4">
-            <button
-              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-              onClick={() => {
-                fetchData();
-              }}
+            <Button className = "bg-sgreen text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300"
+              onClick = {() => fetchData()}
             >
               Refresh
-            </button>
-            <button
-              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+            </Button>
+            <Button
+              className="bg-sgreen text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300"
               onClick={handleSubmit}
             >
               {manualLid ? "Close Lid" : "Open Lid"}
-            </button>
+            </Button>
             {/* Water plant button not yet implemented*/}
-            <button className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+            <Button className="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded-lg">
               Water Plant
               {/* manualWater ? "Stop" : "Water Plant*/}
-            </button>
+            </Button>
           </div>
         </div>
       </section>

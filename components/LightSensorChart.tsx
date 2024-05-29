@@ -60,8 +60,8 @@ export default function LightSensorChart({ data }: { data: DataPoint[] }) {
               {
                 label: "Light Sensor Data in Lux",
                 data: data.map((item) => item.light),
-                backgroundColor: ["#7ED957"],
-                borderColor: ["#7ED957"],
+                backgroundColor: ["#fde68a"],
+                borderColor: ["#fde68a"],
                 borderWidth: 1,
               },
             ],
