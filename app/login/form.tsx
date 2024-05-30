@@ -23,7 +23,6 @@ export default function LoginForm() {
   if (session) {
     redirect("/dashboard");
   }
-  // console.log(session)
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({
@@ -40,10 +39,12 @@ export default function LoginForm() {
       redirect: false,
     });
     
-    if (response?.error === "CredentialsSignin") {
-      setError("Email or password is incorrect");
-    } else if (response?.error === "ConfigurationError") {
-      setError("Invalid action");
+    if (response?.error) {
+      if (response.error === "CredentialsSignin") {
+        setError("Email or password is incorrect");
+      } else if (response.error === "ConfigurationError") {
+        setError("Invalid action");
+      }
     }
   };
 
