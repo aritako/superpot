@@ -10,7 +10,7 @@ import { LuMenu, LuX } from "react-icons/lu";
 export default function Navbar() {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState<number>(0);
   const toggleMenu = () => setIsOpen(prevState => !prevState);
   const navBarFont =
     "text-sm flex items-center rounded-full px-3 text-slate-900 hover:bg-green-200 hover:text-slate-900 transition duration-300 ease-in-out";
