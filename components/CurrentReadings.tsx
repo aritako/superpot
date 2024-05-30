@@ -22,8 +22,8 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export default function CurrentReadings(curRead: CurrentReadingsProps) {
   return (
     <div className = "flex gap-4">
-      <div className = "flex gap-4 w-1/2 -z-2">
-        <Card className="bg-slate-950 border border-red-400 w-1/2 bg-gradient-to-b from-orange-400/30">
+      <div className = "flex gap-4 basis-2/3">
+        <Card className="bg-slate-950 border border-red-400 w-1/2 bg-gradient-to-b from-orange-500/30">
           <CardHeader>
             <CardTitle className="flex items-center gap-1 font-normal">
               <span className = "text-white krona_one text-sm drop-shadow">Light Status</span>
@@ -44,7 +44,7 @@ export default function CurrentReadings(curRead: CurrentReadingsProps) {
           </CardContent>
         </Card>
       </div>
-      <div className = "w-1/2">
+      <div className = "basis-1/3">
         <Card className="bg-slate-950 border border-slate-800">
           <CardHeader>
             <CardTitle className="flex items-center gap-1 font-normal">

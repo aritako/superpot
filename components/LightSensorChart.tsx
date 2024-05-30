@@ -33,7 +33,7 @@ type DataPoint = { timestamp: Date; light: number };
 
 export default function LightSensorChart({ data }: { data: DataPoint[] }) {
   return (
-    <Card className="bg-slate-950 border border-slate-800 w-1/2">
+    <Card className="bg-slate-950 border border-slate-800 basis-1/2">
       <CardHeader>
         <CardTitle className="flex items-center gap-1 font-normal ">
           {/* <svg

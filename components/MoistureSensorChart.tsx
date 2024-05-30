@@ -32,7 +32,7 @@ type DataPoint = { timestamp: Date; moist: number };
 
 export default function LineChart({ data }: { data: DataPoint[] }) {
   return (
-    <Card className="bg-slate-950 border border-slate-800 w-1/2">
+    <Card className="bg-slate-950 border border-slate-800 basis-1/2">
       <CardHeader>
         <CardTitle className="flex items-center gap-1 font-normal">
           <span className = "text-white krona_one">Moisture</span>
