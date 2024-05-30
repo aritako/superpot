@@ -23,8 +23,7 @@ export default function CurrentReadings(curRead: CurrentReadingsProps) {
   return (
     <div className = "flex gap-4">
       <div className = "flex gap-4 w-1/2 -z-2">
-        <Card className="bg-slate-950 border border-slate-800 w-1/2 bg-gradient-to-b from-yellow-300/35">
-        {/* <div className = "w-full h-64 bg-gradient-to-b from-sgreen/30 to-transparent"></div> */}
+        <Card className="bg-slate-950 border border-red-400 w-1/2 bg-gradient-to-b from-orange-400/30">
           <CardHeader>
             <CardTitle className="flex items-center gap-1 font-normal">
               <span className = "text-white krona_one text-sm drop-shadow">Light Status</span>
@@ -49,11 +48,11 @@ export default function CurrentReadings(curRead: CurrentReadingsProps) {
         <Card className="bg-slate-950 border border-slate-800">
           <CardHeader>
             <CardTitle className="flex items-center gap-1 font-normal">
-              <span className = "text-white krona_one text-sm">Sample Status</span>
+              <span className = "text-white krona_one text-sm">SuperPot Status</span>
             </CardTitle>
           </CardHeader>
           <CardContent className = "text-white">
-            <MoisturePanel moist={curRead.moist} />
+            <LidPanel light={curRead.light} lidStat = {curRead.lidStat} />
           </CardContent>
         </Card>
       </div>
