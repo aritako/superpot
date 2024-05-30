@@ -21,15 +21,15 @@ import LidPanel from "./LidPanel";
 ChartJS.register(ArcElement, Tooltip, Legend);
 export default function CurrentReadings(curRead: CurrentReadingsProps) {
   return (
-    <div className = "flex gap-4">
+    <div className = "flex gap-4 h-[320px]">
       <div className = "flex gap-4 basis-2/3">
-        <Card className="bg-slate-950 border border-red-400 w-1/2 bg-gradient-to-b from-orange-500/30">
+        <Card className="bg-slate-950 border border-red-400 w-1/2 bg-gradient-to-b from-orange-500/30 h-full flex flex-col">
           <CardHeader>
-            <CardTitle className="flex items-center gap-1 font-normal">
+            <CardTitle className="flex items-center gap-1 font-normal h-full">
               <span className = "text-white krona_one text-sm drop-shadow">Light Status</span>
             </CardTitle>
           </CardHeader>
-          <CardContent className = "text-white flex flex-col">
+          <CardContent className = "text-white flex flex-col justify-center flex-grow">
             <LightPanel light={curRead.light} />
           </CardContent>
         </Card>

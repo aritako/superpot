@@ -5,8 +5,8 @@ interface LightPanelProps {
 const LightPanel : React.FC<LightPanelProps> = ({light}) => {
   let message = "Too much light!"
   return (
-    <div className="flex flex-col items-center justify-between h-full gap-8 m-auto">
-      <div className = "flex items-end gap-2">
+    <div className="flex flex-col items-center justify-between gap-8">
+      <div className = "flex items-end gap-1">
         <p className="text-6xl drop-shadow text-bold">{light}</p><p>lux</p>
       </div>
       <div>
