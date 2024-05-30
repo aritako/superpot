@@ -9,7 +9,7 @@ export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
     { name: "Home", href: "/" },
     { name: "Dashboard", href: hasLogin ? "/dashboard" : "/login" },
     { name: "Docs", href: "/docs" },
-    { name: "View", href: "/view" },
+    { name: "Product Description", href: "/view" },
   ];
 
   return (

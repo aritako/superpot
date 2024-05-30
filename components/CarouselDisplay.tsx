@@ -3,6 +3,14 @@ import { EmblaOptionsType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function CarouselDisplay() {
   const options: EmblaOptionsType = { loop: true };
@@ -14,20 +22,28 @@ export default function CarouselDisplay() {
   ]);
 
   return (
-    <div className="embla">
-      <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container">
-          {images.map((img) => (
-            <div className="embla__slide" key={img}>
-              <img
-                src={img}
-                alt="slide"
-                style={{ maxWidth: "40%", height: "auto" }}
-              />
+    <Card className="bg-slate-950 border border-slate-800 basis-1/2">
+      <CardContent>
+        <div className="embla">
+          <div className="embla__viewport" ref={emblaRef}>
+            <div className="embla__container">
+              {images.map((img) => (
+                <div className="embla__slide" key={img}>
+                  <img
+                    src={img}
+                    alt="slide"
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "50vh",
+                      height: "auto",
+                    }}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
