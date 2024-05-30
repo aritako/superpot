@@ -10,7 +10,7 @@ import { LuMenu, LuX } from "react-icons/lu";
 export default function Navbar() {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
-
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const toggleMenu = () => setIsOpen(prevState => !prevState);
   const navBarFont =
     "text-sm flex items-center rounded-full px-3 text-slate-900 hover:bg-green-200 hover:text-slate-900 transition duration-300 ease-in-out";
@@ -20,7 +20,20 @@ export default function Navbar() {
     { name: "Dashboard", href: "/dashboard"},
     { name: "Docs", href: "/docs" },
   ];
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
 
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  if (windowWidth >= 768 && isOpen) {
+    setIsOpen(false);
+  }
   return (
     <div className="flex justify-center">
       <nav className="h-[75px] flex justify-between bg-slate-950/95 mb-12 rounded-full border-2 border-slate-900/80 shadow-component px-6 py-2 max-w-6xl w-full items-center">
