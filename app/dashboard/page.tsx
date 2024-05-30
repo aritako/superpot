@@ -99,10 +99,11 @@ export default function Dashboard() {
               Refresh
             </Button>
             <Button
+              disabled = {sensors.light < 2000 || lidStat}
               className="bg-sgreen text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300"
               onClick={handleSubmit}
             >
-              {manualLid ? "Close Lid" : "Open Lid"}
+              {"Open Lid"}
             </Button>
             {/* Water plant button not yet implemented*/}
             <Button className="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded-lg">

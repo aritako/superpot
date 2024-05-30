@@ -5,11 +5,11 @@ interface LidPanelProps {
   light: number;
 }
 
-const LidPanel : React.FC<LidPanelProps> = ({lidStat}) => {
-  const status = lidStat ? "Open" : "Closed";
+const LidPanel : React.FC<LidPanelProps> = ({lidStat, light}) => {
+  const status = light < 2000 || lidStat ? "Open" : "Closed";
   return (
     <div className="flex flex-col items-center">
-      {lidStat ? 
+      {light < 2000 || lidStat ? 
       <Image src="/img/lidOpen.png" alt="Open" width={200} height={200} />
       : 
       <Image src="/img/lidClose.png" alt="Close" width={200} height={200} />
