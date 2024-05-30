@@ -4,14 +4,16 @@ import AuthButton from "./AuthButton";
 import Link from "next/link";
 import { Button } from "@/components/ui/button"
 import { getSession, useSession } from "next-auth/react";
+import { Session } from "next-auth";
 
-export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
+export default function Navbar() {
+  const { data: session } = useSession();
   const navBarFont =
     "text-sm flex items-center rounded-full px-3 text-slate-900 hover:bg-green-200 hover:text-slate-900 transition duration-300 ease-in-out";
 
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "Dashboard", href: hasLogin ? "/login": "/dashboard"},
+    { name: "Dashboard", href: "/dashboard"},
     { name: "Docs", href: "/docs" },
   ];
 
@@ -34,11 +36,14 @@ export default function Navbar({ hasLogin }: { hasLogin: boolean }) {
           ))}
         </div>
         <div className = "flex gap-1">
-          <AuthButton hasLogin={hasLogin} />
-          {!hasLogin && (
-          <Button className = "bg-sgreen rounded-full h-[36px] px-3 text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300">
+          <AuthButton session = {session}/>
+          {!session && (
+            <Button className = "bg-sgreen rounded-full h-[36px] px-3 text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300">
               <Link href="/register" className = "flex items-center">Sign Up</Link>
-          </Button>)}
+            </Button>
+            )
+          }
+          
         </div>
       </nav>
     </div>
