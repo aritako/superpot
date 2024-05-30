@@ -1,9 +1,9 @@
 interface LightPanelProps {
   light: number;
+  message: string;
 }
 
-const LightPanel : React.FC<LightPanelProps> = ({light}) => {
-  let message = "Too much light!"
+const LightPanel : React.FC<LightPanelProps> = ({light, message}) => {
   return (
     <div className="flex flex-col items-center justify-between gap-8">
       <div className = "flex items-end gap-1">
