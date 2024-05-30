@@ -9,10 +9,6 @@ import MoistureSensorChart from "@/components/MoistureSensorChart";
 import CurrentReadings from "@/components/CurrentReadings";
 import Sidebar from "@/components/Sidebar";
 import { Button } from "@/components/ui/button";
-// import { auth } from "../../firebase";
-// import { ref, get, onValue, set } from "firebase/database";
-// import { unsubscribe } from "diagnostics_channel";
-// import { signOut } from "next-auth/react";
 
 type sensorData = {
   light: number;
@@ -81,7 +77,7 @@ export default function Dashboard() {
       {/* <div className = "absolute -z-50 w-full h-64 bg-gradient-to-b from-sgreen/30 to-transparent"></div> */}
       <section className="flex-grow px-8 py-4 w-full h-full">
         <div className = "mb-4">
-          <span className = "krona_one text-white text-3xl">Dashboard</span>
+          {/* <span className = "krona_one text-white text-3xl">Dashboard</span> */}
         </div>
         <div className="flex justify-center flex-col gap-10">
           <div className="h-50 flex gap-4 justify-center flex flex-col">

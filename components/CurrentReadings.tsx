@@ -13,10 +13,13 @@ interface CurrentReadingsProps {
   moist: number;
   lidStat: boolean;
 }
-
+import { Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import DonutChart from "./PercentageChart";
+ChartJS.register(ArcElement, Tooltip, Legend);
 export default function CurrentReadings(curRead: CurrentReadingsProps) {
   return (
-    <Card className="bg-slate-950 border border-slate-800 max-h-[300px]">
+    <Card className="bg-slate-950 border border-slate-800 ">
       <CardHeader>
         <CardTitle className="flex items-center gap-1 font-normal">
           {/* <svg
@@ -48,7 +51,8 @@ export default function CurrentReadings(curRead: CurrentReadingsProps) {
               className="w-[50px]"
             /> */}
             <h2 className="text-xl font-bold">Moisture Sensor</h2>
-            <p className="text-xl">{curRead.moist} %</p>
+            {/* <p className="text-xl">{curRead.moist} %</p> */}
+            <DonutChart rawData={curRead.moist} />
           </div>
           <div className="flex flex-col items-center">
             {/* <img
