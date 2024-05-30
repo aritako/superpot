@@ -1,4 +1,4 @@
-import DonutChart from "./PercentageChart";
+import PercentageChart from "./PercentageChart";
 
 interface MoisturePanelProps {
   moist: number;
@@ -7,8 +7,7 @@ interface MoisturePanelProps {
 const MoisturePanel : React.FC<MoisturePanelProps> = ({moist}) => {
   return (
     <div className="flex flex-col items-center">
-      <h2 className="text-xl font-bold">Moisture Sensor</h2>
-      <DonutChart rawData={moist} />
+      <PercentageChart rawData={moist} />
     </div>
   );
 }

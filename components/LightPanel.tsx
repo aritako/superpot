@@ -3,10 +3,15 @@ interface LightPanelProps {
 }
 
 const LightPanel : React.FC<LightPanelProps> = ({light}) => {
+  let message = "Too much light!"
   return (
-    <div className="flex flex-col items-center">
-      <h2 className="text-xl font-bold">Light Sensor</h2>
-      <p className="text-xl">{light} lux</p>
+    <div className="flex flex-col items-center justify-between h-full gap-8">
+      <div className = "flex items-end gap-3">
+        <p className="text-6xl drop-shadow">{light}</p><p>lux</p>
+      </div>
+      <div>
+        {message}
+      </div>
     </div>
   );
 }
