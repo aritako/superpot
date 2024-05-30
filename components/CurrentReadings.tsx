@@ -16,6 +16,9 @@ interface CurrentReadingsProps {
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import DonutChart from "./PercentageChart";
+import MoisturePanel from "./MoisturePanel";
+import LightPanel from "./LightPanel";
+import LidPanel from "./LidPanel";
 ChartJS.register(ArcElement, Tooltip, Legend);
 export default function CurrentReadings(curRead: CurrentReadingsProps) {
   return (
@@ -35,34 +38,9 @@ export default function CurrentReadings(curRead: CurrentReadingsProps) {
       </CardHeader>
       <CardContent className = "text-white">
         <div className="flex items-center justify-center space-x-10 p-10 rounded-lg gap-4">
-          <div className="flex flex-col items-center">
-            {/* <img
-              src="/img/light_sensor.png"
-              alt="light sensor icon"
-              className="w-[50px]"
-            /> */}
-            <h2 className="text-xl font-bold">Light Sensor</h2>
-            <p className="text-xl">{curRead.light} lux</p>
-          </div>
-          <div className="flex flex-col items-center">
-            {/* <img
-              src="/img/moisture_sensor.png"
-              alt="moisture sensor icon"
-              className="w-[50px]"
-            /> */}
-            <h2 className="text-xl font-bold">Moisture Sensor</h2>
-            {/* <p className="text-xl">{curRead.moist} %</p> */}
-            <DonutChart rawData={curRead.moist} />
-          </div>
-          <div className="flex flex-col items-center">
-            {/* <img
-              src="/img/open_lid.png"
-              alt="lid icon"
-              className="w-[50px]"
-            /> */}
-            <h2 className="text-xl font-bold">Lid Status</h2>
-            <p className="text-xl">{curRead.lidStat ? "Open" : "Closed"}</p>
-          </div>
+          <LightPanel light={curRead.light} />
+          <MoisturePanel moist={curRead.moist} />
+          <LidPanel lidStat={curRead.lidStat} light = {curRead.light}/>
         </div>
       </CardContent>
     </Card>
