@@ -1,5 +1,20 @@
+import Head from 'next/head';
+
 export default {
-    logo: <span>Super Pot</span>,
+    primaryHue: 102,
+    primarySaturation: 40,
+    logo:    
+    <>
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+      <span style={{ color: '#7ED957', fontFamily: "'Krona One', sans-serif" }}>
+        SuperPot
+      </span>
+    </> ,
     project: {
       link: 'https://github.com/aritako/superpot'
     },

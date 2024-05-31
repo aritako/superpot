@@ -19,12 +19,10 @@ export default function LoginForm() {
     password: "",
   });
   const [error, setError] = useState<string | null>(null);
-
   const { data: session } = useSession();
   if (session) {
     redirect("/dashboard");
   }
-
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({
@@ -41,11 +39,13 @@ export default function LoginForm() {
       redirect: false,
     });
     
-    if (response?.error === "CredentialsSignin") {
-      setError("Email or password is incorrect");
-    } else if (response?.error === "ConfigurationError") {
-      setError("Invalid action");
-    } 
+    if (response?.error) {
+      if (response.error === "CredentialsSignin") {
+        setError("Email or password is incorrect");
+      } else if (response.error === "ConfigurationError") {
+        setError("Invalid action");
+      }
+    }
   };
 
   return (

@@ -13,54 +13,71 @@ interface CurrentReadingsProps {
   moist: number;
   lidStat: boolean;
 }
+import { Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import MoisturePanel from "./MoisturePanel";
+import LightPanel from "./LightPanel";
+import LidPanel from "./LidPanel";
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+function displayLightPanelContent(light: number){
+  let lightPanelTheme = " from-orange-500/30 border-red-400"
+  let lightPanelMessage = "Too much sunlight!"
+  if (light < 2000 && light >= 1000){
+    lightPanelTheme = " from-yellow-500/30 border-yellow-400"
+    lightPanelMessage = "Adequate amount of sunlight!"
+  } else if (light < 1000 && light >= 100){
+    lightPanelTheme = " from-sdgreen/30 border-green-400"
+    lightPanelMessage = "Just enough sunlight!"
+  } else if (light < 100){
+    lightPanelTheme = " from-slate-700/30 border-slate-800"
+    lightPanelMessage = "Little-to-no sunlight!"
+  }
+  
+  return {
+    message: lightPanelMessage,
+    theme: lightPanelTheme
+  }
+}
 
 export default function CurrentReadings(curRead: CurrentReadingsProps) {
+  const { message: lightPanelMessage, theme: lightPanelTheme } = displayLightPanelContent(curRead.light);
   return (
-    <Card className="curr-read-card w-1/4 border border-green-300">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-1 font-normal">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="current color"
-            className="size-5"
-          >
-            <path d="M10 3.75a2 2 0 1 0-4 0 2 2 0 0 0 4 0ZM17.25 4.5a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5h5.5ZM5 3.75a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 .75.75ZM4.25 17a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5ZM17.25 17a.75.75 0 0 0 0-1.5h-5.5a.75.75 0 0 0 0 1.5h5.5ZM9 10a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1 0-1.5h5.5A.75.75 0 0 1 9 10ZM17.25 10.75a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5h1.5ZM14 10a2 2 0 1 0-4 0 2 2 0 0 0 4 0ZM10 16.25a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z" />
-          </svg>
-          Current Readings
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="flex items-center justify-center space-x-10 p-10 rounded-lg">
-          <div className="flex flex-col items-center space-y-2 flex-1">
-            <img
-              src="/img/light_sensor.png"
-              alt="light sensor icon"
-              className="w-full h-full"
-            />
-            <h2 className="text-xl font-bold">Light Sensor</h2>
-            <p className="text-xl">{curRead.light} lux</p>
-          </div>
-          <div className="flex flex-col items-center space-y-2">
-            <img
-              src="/img/moisture_sensor.png"
-              alt="moisture sensor icon"
-              className="w-full h-full"
-            />
-            <h2 className="text-xl font-bold">Moisture Sensor</h2>
-            <p className="text-xl">{curRead.moist} %</p>
-          </div>
-          <div className="flex flex-col items-center space-y-2">
-            <img
-              src="/img/open_lid.png"
-              alt="lid icon"
-              className="w-full h-full"
-            />
-            <h2 className="text-xl font-bold">Lid Status</h2>
-            <p className="text-xl">{curRead.lidStat ? "Open" : "Closed"}</p>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+    <div className="flex gap-4 h-[320px]">
+      <div className="flex gap-4 basis-2/3">
+        <Card className={`bg-slate-950 border border-red-400 w-1/2 bg-gradient-to-b ${lightPanelTheme} h-full flex flex-col`}>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-1 font-normal h-full">
+              <span className="text-white krona_one text-sm drop-shadow">Light Status</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="text-white flex flex-col justify-center flex-grow">
+            <LightPanel light={curRead.light} message={lightPanelMessage} />
+          </CardContent>
+        </Card>
+        <Card className="bg-slate-950 border border-slate-800 w-1/2">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-1 font-normal">
+              <span className="text-white krona_one text-sm">Moisture Status</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="text-white">
+            <MoisturePanel moist={curRead.moist} />
+          </CardContent>
+        </Card>
+      </div>
+      <div className="basis-1/3">
+        <Card className="bg-slate-950 border border-slate-800">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-1 font-normal">
+              <span className="text-white krona_one text-sm">SuperPot Status</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="text-white">
+            <LidPanel light={curRead.light} lidStat={curRead.lidStat} />
+          </CardContent>
+        </Card>
+      </div>
+    </div>
   );
 }

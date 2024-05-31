@@ -94,6 +94,7 @@
 .chart-container {
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .embla {
@@ -110,3 +111,4 @@
   justify-content: center;
   align-items: center;
 }
+

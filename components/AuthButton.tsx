@@ -1,6 +1,7 @@
+import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
 
-export default function AuthButton({ hasLogin }: { hasLogin: boolean }) {
+export default function AuthButton({ session, className }: { session: Session | null, className ?: string}) {
   const navBarFont =
     "h-[36px] text-sm flex items-center rounded-full px-3 text-white hover:bg-slate-800 transition duration-300 ease-in-out";
 
@@ -10,12 +11,12 @@ export default function AuthButton({ hasLogin }: { hasLogin: boolean }) {
     }
   };
 
-  return hasLogin ? (
-    <button className={navBarFont} onClick={handleLogout}>
+  return session ? (
+    <button className={navBarFont + ` ${className}`} onClick={handleLogout}>
       Logout
     </button>
   ) : (
-    <a className={navBarFont} href="/login">
+    <a className={navBarFont + ` ${className}`} href="/login">
       {" "}
       Login
     </a>
