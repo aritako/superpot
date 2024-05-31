@@ -12,16 +12,11 @@ export default function View() {
         <Navbar />
       </section>
       <div className="flex justify-center flex-col w-full">
-        <div className="flex justify-center">
-          <span className="krona_one xl:text-4xl lg:text-6xl md:text-5xl sm:text-4xl text-4xl text-white text-left mx-5">
-            <span className="text-sgreen">SuperPot </span>
-            Product Description
-          </span>
-        </div>
+        {/*   */}
 
-        <div className="flex flex-row gap-3 justify-center mt-5 w-full">
+        <div className="flex flex-row gap-3 justify-center w-full">
           <div className="flex flex-col gap-3 justify-center items-center w-full max-w-6xl">
-            <div className=" flex flex-row gap-3 justify-center mt-5">
+            <div className=" flex flex-row gap-3 justify-center">
               <ProductDesc />
               <CarouselDisplay />
             </div>

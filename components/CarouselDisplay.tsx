@@ -27,7 +27,7 @@ export default function CarouselDisplay() {
         <CardTitle className="flex items-center gap-1 font-normal ">
           <span className="krona_one text-sgreen">Product Model</span>
         </CardTitle>
-        <CardDescription className="text-white krona_one text-xs text-justify">
+        <CardDescription className="text-white text-gray-400 text-md text-justify">
           View our product's 3D model!
         </CardDescription>
       </CardHeader>
