@@ -114,14 +114,13 @@ const Scene = () => (
       View Scene
     </DialogTrigger>
 
-    <DialogContent>
-      <video className="w-[95%]" autoPlay loop muted>
+    <DialogContent className = "flex flex-col items-center rounded-lg border-slate-800 bg-gradient-to-b from-[#7ED957]/30 to-25% to-transparent">
+      <video className="w-[95%] mt-6 rounded-lg" autoPlay loop muted>
         <source src="/vid/3dmodelvid.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <DialogHeader>
         <DialogTitle className="krona_one text-sgreen">View Scene</DialogTitle>
-        <DialogDescription> </DialogDescription>
       </DialogHeader>
     </DialogContent>
   </Dialog>

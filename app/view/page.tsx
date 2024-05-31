@@ -6,7 +6,7 @@ import AboutCard from "@/components/AboutCard";
 
 export default function View() {
   return (
-    <main className = "pb-4">
+    <main className = "pb-8">
       <div className="absolute -z-50 w-full h-64 bg-gradient-to-b from-sgreen/30 to-transparent"></div>
       <section className="sticky top-0 p-4">
         <Navbar />
