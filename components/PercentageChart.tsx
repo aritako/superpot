@@ -12,12 +12,15 @@ const healthyColor = '#67e8f9';
 const unhealthyColor = '#fca5a5';
 
 const DonutChart : React.FC<DonutChartProps> = (props) => {
-  const { rawData } = props;
-  
+  let { rawData } = props;
   // Compute Color based on RawData
-  let chartColor = "#67e8f9"
+  let chartColor = "#2563eb"
   let chartColorHover = "#0891b2"
-  if (rawData < 25 && rawData >= 10 ){
+  if (rawData >= 25 && rawData < 50){
+    chartColor = "#67e8f9"
+    chartColorHover = "#0891b2"
+  }
+  else if (rawData < 25 && rawData >= 10 ){
     chartColor = "#f87171"
     chartColorHover = "#ef4444"
   } else if (rawData < 10){
