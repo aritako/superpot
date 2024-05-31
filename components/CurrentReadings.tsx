@@ -12,6 +12,7 @@ interface CurrentReadingsProps {
   light: number;
   moist: number;
   lidStat: boolean;
+  manualLid: boolean;
 }
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
@@ -74,7 +75,7 @@ export default function CurrentReadings(curRead: CurrentReadingsProps) {
             </CardTitle>
           </CardHeader>
           <CardContent className="text-white">
-            <LidPanel light={curRead.light} lidStat={curRead.lidStat} />
+            <LidPanel light={curRead.light} lidStat={curRead.lidStat} manualLid = {curRead.manualLid} />
           </CardContent>
         </Card>
       </div>

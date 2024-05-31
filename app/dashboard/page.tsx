@@ -105,7 +105,8 @@ export default function Dashboard() {
             <CurrentReadings
               light={sensors.light}
               moist={sensors.moist}
-              lidStat={manualCont ? manualLid : lidStat}
+              lidStat={lidStat}
+              manualLid = {manualCont}
             />
           </div>
 
