@@ -9,7 +9,7 @@ import {
 
 export default function AboutCard() {
   return (
-    <Card className="bg-slate-950 border border-slate-800 basis-1/2">
+    <Card className="bg-slate-950 border border-slate-800">
       <CardHeader>
         <CardTitle className="flex items-center gap-1 font-normal ">
           <span className="krona_one text-sgreen">About SuperPot</span>
@@ -26,7 +26,7 @@ export default function AboutCard() {
           Internet, ensuring that plants receive ideal care regardless of their
           location.
         </div>
-        <span className="krona_one text-sgreen">Main Features </span>
+        {/* <span className="krona_one text-sgreen">Main Features </span>
 
         <ol className="list-decimal pl-5 text-white">
           <li>
@@ -41,7 +41,7 @@ export default function AboutCard() {
             Remote control watering and shade mechanism as well as monitoring
             via the Internet for convenience and accessibility.
           </li>
-        </ol>
+        </ol> */}
       </CardContent>
     </Card>
   );

@@ -67,9 +67,9 @@ export default function ProductDesc() {
             height: "50vh",
           }}
         >
-          <Image src="/img/actual_superpot.png" alt="SuperPot" width={300} height = {300} />
+          <img src="/img/actual_superpot.png" alt="SuperPot" className = "w-[300px]" />
         </div>
-        <div className="flex justify-center gap-5">
+        <div className="flex flex-wrap justify-center gap-2">
           {DialogComponents.map((component) => (
             <ComponentDialog
               key={component.trigger}
@@ -92,14 +92,15 @@ const ComponentDialog = ({ trigger, img, desc, title } : {trigger: string, img: 
       style={{
         color: "white",
       }}
+      className = "bg-slate-700 rounded-full px-3 py-2 hover:bg-slate-800 text-sm transition duration-300 ease-in-out"
     >
       {trigger}
     </DialogTrigger>
-    <DialogContent>
+    <DialogContent className = "flex flex-col items-center rounded-lg border-slate-800 bg-gradient-to-b from-[#7ED957]/30 to-25% to-transparent">
       <Image src={img} alt="product" width = {300} height = {300}/>
       <DialogHeader>
         <DialogTitle className="krona_one text-sgreen">{title}</DialogTitle>
-        <DialogDescription>{desc}</DialogDescription>
+        <DialogDescription className = "text-gray-400">{desc}</DialogDescription>
       </DialogHeader>
     </DialogContent>
   </Dialog>
@@ -108,9 +109,7 @@ const ComponentDialog = ({ trigger, img, desc, title } : {trigger: string, img: 
 const Scene = () => (
   <Dialog>
     <DialogTrigger
-      style={{
-        color: "white",
-      }}
+      className = "bg-sgreen rounded-full px-3 py-2 hover:bg-sdgreen text-slate-950 hover:text-white text-sm transition duration-300 ease-in-out"
     >
       View Scene
     </DialogTrigger>
