@@ -18,7 +18,6 @@ export default function Navbar() {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Dashboard", href: "/dashboard"},
-    { name: "Docs", href: "/docs" },
     { name: "Product", href: "/view" },
   ];
   useEffect(() => {
@@ -53,6 +52,12 @@ export default function Navbar() {
           ))}
         </div>
         <div className="flex gap-1">
+          <a
+            href={"/docs"}
+            className="hidden md:flex h-[36px] text-sm items-center rounded-full px-3 text-white hover:bg-slate-800 transition duration-300 ease-in-out"
+          >
+            Docs
+          </a>
           <button className="md:hidden flex items-center text-white" onClick={toggleMenu}>
             <LuMenu size={24} />
           </button>
@@ -86,6 +91,12 @@ export default function Navbar() {
                 {item.name}
               </a>
             ))}
+            <a
+              href={"/docs"}
+              className="h-[36px] text-sm flex items-center rounded-lg px-3 text-white hover:bg-slate-800 transition duration-300 ease-in-out"
+            >
+              Docs
+            </a>
             <AuthButton session={session} className = "mt-8 bg-slate-700 rounded-lg flex justify-center"/>
             {!session && (
               <Button className="bg-sgreen rounded-lg h-[36px] px-3 text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300">
