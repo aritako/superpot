@@ -9,7 +9,7 @@ export default function View() {
     <main>
       <div className="absolute -z-50 w-full h-64 bg-gradient-to-b from-sgreen/30 to-transparent"></div>
       <section className="sticky top-0 p-4">
-        <Navbar hasLogin={false} />
+        <Navbar />
       </section>
       <div className="flex justify-center flex-col w-full">
         <div className="flex justify-center">
