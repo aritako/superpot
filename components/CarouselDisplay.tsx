@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import Image from "next/image";
 
 export default function CarouselDisplay() {
   const options: EmblaOptionsType = { loop: true };
@@ -37,15 +38,7 @@ export default function CarouselDisplay() {
             <div className="embla__container">
               {images.map((img) => (
                 <div className="embla__slide" key={img}>
-                  <img
-                    src={img}
-                    alt="slide"
-                    style={{
-                      maxWidth: "100%",
-                      maxHeight: "50vh",
-                      height: "auto",
-                    }}
-                  />
+                  <Image src={img} alt="slide" width={400} height={400} />
                 </div>
               ))}
             </div>

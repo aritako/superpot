@@ -67,10 +67,7 @@ export default function ProductDesc() {
             height: "50vh",
           }}
         >
-          <img
-            src="/img/actual_superpot.png"
-            style={{ width: "55%", height: "auto" }}
-          />
+          <Image src="/img/actual_superpot.png" alt="SuperPot" width={300} height = {300} />
         </div>
         <div className="flex justify-center gap-5">
           {DialogComponents.map((component) => (
