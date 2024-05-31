@@ -110,16 +110,17 @@ export default function Dashboard() {
             <Button
               disabled = {sensors.light < 2000 || lidStat}
               className="bg-sgreen text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300"
-              onClick={handleSubmit}
+              onClick={handleLidButton}
             >
               {"Open Lid"}
             </Button>
             {/* Water plant button not yet implemented*/}
             <Button 
               disabled = {sensors.moist >= 51}
-              className="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded-lg">
+              className="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded-lg"
               onClick = {handleWaterButton}
-              Water Plant
+            >
+               Water Plant
               {/* manualWater ? "Stop" : "Water Plant*/}
             </Button>
           </div>
