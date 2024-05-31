@@ -19,7 +19,7 @@ export default function Navbar() {
     { name: "Home", href: "/" },
     { name: "Dashboard", href: "/dashboard"},
     { name: "Docs", href: "/docs" },
-    { name: "Product Description", href: "/view" },
+    { name: "Product", href: "/view" },
   ];
   useEffect(() => {
     const handleResize = () => {
