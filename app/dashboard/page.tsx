@@ -7,10 +7,8 @@ import { ReadData, SetData } from "../../components/RealtimeDatabase";
 import LightSensorChart from "@/components/LightSensorChart";
 import MoistureSensorChart from "@/components/MoistureSensorChart";
 import CurrentReadings from "@/components/CurrentReadings";
-// import { auth } from "../../firebase";
-// import { ref, get, onValue, set } from "firebase/database";
-// import { unsubscribe } from "diagnostics_channel";
-// import { signOut } from "next-auth/react";
+import Sidebar from "@/components/Sidebar";
+import { Button } from "@/components/ui/button";
 
 type sensorData = {
   light: number;
@@ -36,14 +34,6 @@ export default function Dashboard() {
 
   const [lightData, setLightData] = useState<LightSensorData[]>([]);
   const [moistData, setMoistData] = useState<MoistSensorData[]>([]);
-
-  const session = useSession({
-    required: true,
-    onUnauthenticated() {
-      redirect("/login");
-    },
-  });
-
   const fetchData = async () => {
     const sensData = await ReadData(uid, "sens");
     const actuData = await ReadData(uid, "actu");
@@ -91,44 +81,51 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <section className="flex-grow lg:p-12 sm:p-6 p-6 bg-gradient-to-b from-green-200 to-green-50">
-      <Navbar hasLogin={true} />
-      <div className="flex justify-center flex-col gap-10">
-        <div className="h-80 flex gap-4 justify-center">
-          <LightSensorChart data={lightData} />
-          <MoistureSensorChart data={moistData} />
-          <CurrentReadings
-            light={sensors.light}
-            moist={sensors.moist}
-            lidStat={lidStat}
-          />
+    <div className = "flex items-start justify-between">
+      <Sidebar/>
+      {/* <div className = "absolute -z-50 w-full h-64 bg-gradient-to-b from-sgreen/30 to-transparent"></div> */}
+      <section className="flex-grow px-8 py-4 w-full h-full">
+        <div className = "mb-4">
+          {/* <span className = "krona_one text-white text-3xl">Dashboard</span> */}
         </div>
+        <div className="flex justify-center flex-col gap-10">
+          <div className="h-50 flex gap-4 justify-center flex flex-col">
+            <div className = "flex gap-4 w-full">
+              <LightSensorChart data={lightData} />
+              <MoistureSensorChart data={moistData} />
+            </div>
+            <CurrentReadings
+              light={sensors.light}
+              moist={sensors.moist}
+              lidStat={lidStat}
+            />
+          </div>
 
-        <div className="flex justify-center gap-4">
-          <button
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-            onClick={() => {
-              fetchData();
-            }}
-          >
-            Refresh
-          </button>
-          <button
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-            onClick={handleLidButton}
-          >
-            {manualLid ? "Open Lid" : "Close Lid"}
-          </button>
-          {/* Water plant button not yet implemented*/}
-          <button
-            className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
-            onClick={handleWaterButton}
-          >
-            Water Plant
-            {/* manualWater ? "Stop" : "Water Plant*/}
-          </button>
+          <div className="flex justify-center gap-4">
+            <Button className = "bg-sgreen text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300"
+              onClick = {() => fetchData()}
+            >
+              Refresh
+            </Button>
+            <Button
+              disabled = {sensors.light < 2000 || lidStat}
+              className="bg-sgreen text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300"
+              onClick={handleLidButton}
+            >
+              {"Open Lid"}
+            </Button>
+            {/* Water plant button not yet implemented*/}
+            <Button 
+              disabled = {sensors.moist >= 51}
+              className="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded-lg"
+              onClick = {handleWaterButton}
+            >
+               Water Plant
+              {/* manualWater ? "Stop" : "Water Plant*/}
+            </Button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

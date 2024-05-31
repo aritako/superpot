@@ -9,7 +9,7 @@ async function Register() {
     <main>
       <div className = "absolute -z-50 w-full h-64 bg-gradient-to-b from-sgreen/30 to-transparent"></div>
       <section className="sticky top-0 p-4">
-        <Navbar hasLogin={false} />
+        <Navbar  />
       </section>
       <section className = "flex justify-center space-between w-full p-4">
         <div className = "flex flex-col gap-4 px-4 w-full max-w-6xl">
