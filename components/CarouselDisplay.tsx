@@ -2,7 +2,7 @@ import React from "react";
 import { EmblaOptionsType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import Fade from "embla-carousel-fade";
+// import Fade from "embla-carousel-fade";
 import {
   Card,
   CardContent,
@@ -31,7 +31,7 @@ export default function CarouselDisplay() {
           View our product's 3D model!
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex flex-col justify-center items-center">
         <div className="embla">
           <div className="embla__viewport" ref={emblaRef}>
             <div className="embla__container">

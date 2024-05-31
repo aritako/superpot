@@ -32,12 +32,12 @@ export default function ProductDesc() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "70vh",
+            height: "50vh",
           }}
         >
           <img
             src="/img/actual_superpot.png"
-            style={{ width: "70%", height: "auto" }}
+            style={{ width: "55%", height: "auto" }}
           />
         </div>
         <div className="flex justify-center gap-5">
@@ -47,19 +47,6 @@ export default function ProductDesc() {
           <WaterPump />
           <ESP8266 />
           <Scene />
-        </div>
-
-        <div className="flex items-center gap-1 font-normal ">
-          <span className="krona_one text-sgreen">About SuperPot</span>
-        </div>
-
-        <div className="text-white text-s text-justify">
-          The Super Pot is an intelligent and self-sufficient Greenhouse
-          Enclosure System for vegetable cultivation and seedling care. It
-          incorporates sunlight and moisture sensors, automatic waterer, and
-          weather-dependent shade mechanism that can be controlled and monitored
-          remotely via the Internet, ensuring that plants receive ideal care
-          regardless of their location.
         </div>
       </CardContent>
     </Card>
@@ -203,20 +190,14 @@ const Scene = () => (
     </DialogTrigger>
 
     <DialogContent>
-    <video className="w-[95%]" autoPlay loop muted>
-            <source src="/vid/3dmodelvid.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+      <video className="w-[95%]" autoPlay loop muted>
+        <source src="/vid/3dmodelvid.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <DialogHeader>
-        <DialogTitle className="krona_one text-sgreen">
-          WeMosD1 - ESP8266 Microcontroller
-        </DialogTitle>
-        <DialogDescription>
-          View Scene
-        </DialogDescription>
+        <DialogTitle className="krona_one text-sgreen">View Scene</DialogTitle>
+        <DialogDescription> </DialogDescription>
       </DialogHeader>
     </DialogContent>
   </Dialog>
 );
-
-

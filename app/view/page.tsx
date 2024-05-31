@@ -2,7 +2,7 @@
 import Navbar from "@/components/Navbar";
 import CarouselDisplay from "@/components/CarouselDisplay";
 import ProductDesc from "@/components/ProductDesc";
-import VideoDisplay from "@/components/VideoDisplay";
+import AboutCard from "@/components/AboutCard";
 
 export default function View() {
   return (
@@ -20,12 +20,12 @@ export default function View() {
         </div>
 
         <div className="flex flex-row gap-3 justify-center mt-5 w-full">
-          <div className="max-w-6xl flex flex-row gap-3 justify-center mt-5 mx-5">
-            <ProductDesc />
-            
+          <div className="flex flex-col gap-3 justify-center items-center w-full max-w-6xl">
+            <div className=" flex flex-row gap-3 justify-center mt-5">
+              <ProductDesc />
               <CarouselDisplay />
-              
-            
+            </div>
+            <AboutCard />
           </div>
         </div>
       </div>
