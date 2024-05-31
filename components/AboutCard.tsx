@@ -17,7 +17,7 @@ export default function AboutCard() {
         <CardDescription className="text-white krona_one text-xs"></CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="text-white text-s text-justify">
+        <div className="text-gray-400 text-s text-justify">
           The <span className="krona_one text-sgreen"> SuperPot </span>is an
           intelligent and self-sufficient Greenhouse Enclosure System for
           vegetable cultivation and seedling care. It incorporates sunlight and
