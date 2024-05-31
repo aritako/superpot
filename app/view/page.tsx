@@ -11,19 +11,22 @@ export default function View() {
       <section className="sticky top-0 p-4">
         <Navbar hasLogin={false} />
       </section>
+      <div className="flex justify-center flex-col w-full">
+        <div className="flex justify-center">
+          <span className="krona_one xl:text-4xl lg:text-6xl md:text-5xl sm:text-4xl text-4xl text-white text-left mx-5">
+            <span className="text-sgreen">SuperPot </span>
+            Product Description
+          </span>
+        </div>
 
-      <div>
-        <span className="krona_one xl:text-4xl lg:text-6xl md:text-5xl sm:text-4xl text-4xl text-white text-left mx-5">
-          <span className="text-sgreen">SuperPot </span>
-          Product Description
-        </span>
-      </div>
-
-      <div className="flex flex-row gap-3 justify-center mt-5 mx-5">
-        <ProductDesc />
-        <div className="flex flex-col w-1/2 gap-3">
-          <CarouselDisplay />
-          <VideoDisplay />
+        <div className="flex flex-row gap-3 justify-center mt-5 w-full">
+          <div className="max-w-6xl flex flex-row gap-3 justify-center mt-5 mx-5">
+            <ProductDesc />
+            <div className="flex flex-col w-1/2 gap-3">
+              <CarouselDisplay />
+              <VideoDisplay />
+            </div>
+          </div>
         </div>
       </div>
     </main>

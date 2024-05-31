@@ -23,7 +23,7 @@ export default function ProductDesc() {
           <span className="krona_one text-sgreen">Components</span>
         </CardTitle>
         <CardDescription className="text-white krona_one text-xs">
-          Click on the individual components to learn more about the SuperPot!
+          Click on each component to learn more about the SuperPot!
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -37,7 +37,7 @@ export default function ProductDesc() {
         >
           <img
             src="/img/actual_superpot.png"
-            style={{ width: "50%", height: "auto" }}
+            style={{ width: "70%", height: "auto" }}
           />
         </div>
         <div className="flex justify-center gap-5">
@@ -46,6 +46,19 @@ export default function ProductDesc() {
           <ServoMotor />
           <WaterPump />
           <ESP8266 />
+        </div>
+
+        <div className="flex items-center gap-1 font-normal ">
+          <span className="krona_one text-sgreen">About SuperPot</span>
+        </div>
+
+        <div className="text-white text-s text-justify">
+          The Super Pot is an intelligent and self-sufficient Greenhouse
+          Enclosure System for vegetable cultivation and seedling care. It
+          incorporates sunlight and moisture sensors, automatic waterer, and
+          weather-dependent shade mechanism that can be controlled and monitored
+          remotely via the Internet, ensuring that plants receive ideal care
+          regardless of their location.
         </div>
       </CardContent>
     </Card>
