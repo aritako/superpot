@@ -12,10 +12,7 @@ export default function VideoDisplay() {
     <Card className="bg-slate-950 border border-slate-800 basis-1/2">
       <section className="flex justify-center gap-10 w-full p-10">
         <div className="flex justify-center w-full max-w-6xl m-auto">
-          <video className="w-[95%]" autoPlay loop muted>
-            <source src="/vid/3dmodelvid.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          
         </div>
       </section>
     </Card>

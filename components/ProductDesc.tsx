@@ -46,6 +46,7 @@ export default function ProductDesc() {
           <ServoMotor />
           <WaterPump />
           <ESP8266 />
+          <Scene />
         </div>
 
         <div className="flex items-center gap-1 font-normal ">
@@ -190,3 +191,32 @@ const ESP8266 = () => (
     </DialogContent>
   </Dialog>
 );
+
+const Scene = () => (
+  <Dialog>
+    <DialogTrigger
+      style={{
+        color: "white",
+      }}
+    >
+      View Scene
+    </DialogTrigger>
+
+    <DialogContent>
+    <video className="w-[95%]" autoPlay loop muted>
+            <source src="/vid/3dmodelvid.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+      <DialogHeader>
+        <DialogTitle className="krona_one text-sgreen">
+          WeMosD1 - ESP8266 Microcontroller
+        </DialogTitle>
+        <DialogDescription>
+          View Scene
+        </DialogDescription>
+      </DialogHeader>
+    </DialogContent>
+  </Dialog>
+);
+
+

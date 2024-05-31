@@ -22,10 +22,10 @@ export default function View() {
         <div className="flex flex-row gap-3 justify-center mt-5 w-full">
           <div className="max-w-6xl flex flex-row gap-3 justify-center mt-5 mx-5">
             <ProductDesc />
-            <div className="flex flex-col w-1/2 gap-3">
+            
               <CarouselDisplay />
-              <VideoDisplay />
-            </div>
+              
+            
           </div>
         </div>
       </div>
