@@ -11,19 +11,15 @@ export default function View() {
       <section className="sticky top-0 p-4">
         <Navbar />
       </section>
-      <div className="flex justify-center flex-col w-full">
-        {/*   */}
-
-        <div className="flex flex-row gap-3 justify-center w-full">
-          <div className="flex flex-col gap-3 justify-center items-center w-full max-w-6xl">
-            <div className=" flex flex-row gap-3 justify-center">
-              <ProductDesc />
-              <CarouselDisplay />
-            </div>
-            <AboutCard />
+      <section className="flex justify-center items-center flex-col w-full">
+        <div className="flex flex-col gap-3 justify-center items-center max-w-6xl px-8">
+          <div className=" flex flex-col md:flex-row gap-3 justify-center">
+            <ProductDesc />
+            <CarouselDisplay />
           </div>
+          <AboutCard />
         </div>
-      </div>
+      </section>
     </main>
   );
 }
