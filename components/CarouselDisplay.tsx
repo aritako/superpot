@@ -17,7 +17,7 @@ export default function CarouselDisplay() {
   const images = ["/img/1.png", "/img/2.png", "/img/3.png", "/img/4.png"];
 
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
-    Autoplay({ playOnInit: true, delay: 2300 }),
+    Autoplay({ playOnInit: true, delay: 2300, stopOnInteraction: false}),
     // Fade(),
   ]);
 
