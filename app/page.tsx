@@ -21,8 +21,11 @@ export default function Home() {
               Anytime, Anywhere.
             </span>
           </div>
-          <div className = "flex justify-center">
-            <Button className = "bg-sgreen text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300">
+          <div className = "flex flex-col sm:flex-row w-full items-center justify-center gap-2">
+            <Button className = "bg-transparent border border-slate-700 text-white hover:text-white hover:bg-slate-800 transition ease-in-out duration-300 w-36">
+              <Link href="/view" className = "flex items-center">View Our Product</Link>
+            </Button>
+            <Button className = "bg-sgreen text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300 w-36">
               <Link href="/login" className = "flex items-center">Get Started&nbsp;<ChevronRight className="h-4 w-4 "/></Link>
             </Button>
           </div>

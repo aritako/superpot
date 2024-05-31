@@ -28,6 +28,7 @@ export default function Dashboard() {
   const [manualLid, setManualLid] = useState<boolean>(false);
   const [manualWater, setManualWater] = useState<boolean>(false);
   const [lidStat, setLidStat] = useState<boolean>(false);
+  const [manualCont, setManualCont] = useState<boolean>(false);
   const [waterStat, setWaterStat] = useState<boolean>(false);
   const [copy, setCopy] = useState<boolean>(false);
   // const [userUID, setUserUID] = useState<string>("");
@@ -44,6 +45,7 @@ export default function Dashboard() {
     });
     console.log(sensors);
     setLidStat(actuData.lidOpen);
+    setManualCont(actuData.manualCont);
 
     if (!copy) {
       setManualLid(actuData.lidOpen);
@@ -62,12 +64,18 @@ export default function Dashboard() {
 
   const handleLidButton = async () => {
     await SetData(uid, !manualLid, "lidOpen");
+    if (manualCont) {
+      await SetData(uid, false, "manualCont");
+    } else {
+      await SetData(uid, true, "manualCont");
+    }
     setLidStat(!manualLid);
     setManualLid(!manualLid);
   };
 
   const handleWaterButton = async () => {
     await SetData(uid, !manualWater, "waterOpen");
+    await SetData(uid, true, "manualCont");
     setWaterStat(!manualWater);
     setManualWater(!manualWater);
   };
@@ -98,6 +106,7 @@ export default function Dashboard() {
               light={sensors.light}
               moist={sensors.moist}
               lidStat={lidStat}
+              manualLid = {manualCont}
             />
           </div>
 
@@ -108,11 +117,11 @@ export default function Dashboard() {
               Refresh
             </Button>
             <Button
-              disabled = {sensors.light < 2000 || lidStat}
+              // disabled = {sensors.light < 2000 || lidStat}
               className="bg-sgreen text-slate-950 hover:text-white hover:bg-[#3d6a2a] transition ease-in-out duration-300"
               onClick={handleLidButton}
             >
-              {"Open Lid"}
+              {manualCont ? manualLid ? "Close Lid" : "Open Lid" : lidStat ? "Close Lid" : "Open Lid"}
             </Button>
             {/* Water plant button not yet implemented*/}
             <Button 

@@ -3,13 +3,15 @@ import Image from "next/image";
 interface LidPanelProps {
   lidStat: boolean;
   light: number;
+  manualLid: boolean;
 }
 
-const LidPanel : React.FC<LidPanelProps> = ({lidStat, light}) => {
-  const status = light < 2000 || lidStat ? "Open" : "Closed";
+const LidPanel : React.FC<LidPanelProps> = ({lidStat, light, manualLid}) => {
+  const finalLidStat = manualLid ? lidStat : light < 2000;
+  const status = finalLidStat ? "Open" : "Closed";
   return (
     <div className="flex flex-col items-center">
-      {light < 2000 || lidStat ? 
+      {finalLidStat ? 
       <Image priority = {true} src="/img/lidOpen.png" alt="Open" width={200} height={200} />
       : 
       <Image priority = {true} src="/img/lidClose.png" alt="Close" width={200} height={200} />
