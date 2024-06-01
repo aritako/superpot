@@ -125,7 +125,7 @@ export default function Dashboard() {
             </Button>
             {/* Water plant button not yet implemented*/}
             <Button 
-              disabled = {sensors.moist >= 51}
+              disabled = {manualWater}
               className="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded-lg"
               onClick = {handleWaterButton}
             >
