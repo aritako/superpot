@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter, Krona_One } from "next/font/google";
 import "./globals.css";
 import SessionProvider from "../components/SessionProvider";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 const kronaOne = Krona_One({
@@ -24,8 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${kronaOne.variable} bg-slate-950`}>
-        <SessionProvider>{children}</SessionProvider>
-        </body>
+        <SessionProvider>
+          {children}
+        </SessionProvider>
+      </body>
     </html>
   );
 }

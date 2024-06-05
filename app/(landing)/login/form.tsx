@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input"
-import { auth } from "../../firebase";
+import { auth } from "../../../firebase";
 
 type loginFormData = {
   email: string;

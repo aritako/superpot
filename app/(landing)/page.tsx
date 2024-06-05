@@ -9,10 +9,6 @@ import { ChevronRight } from "lucide-react";
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen">
-      <div className = "absolute -z-50 w-full h-64 bg-gradient-to-b from-[#7ED957]/30 to-transparent"></div>
-      <section className="sticky top-0 p-4">
-        <Navbar />
-      </section>
       <section className="flex justify-center w-full p-4">
         <div className = "w-full max-w-6xl">
           <div className = "flex flex-col gap-8 mb-12">

@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { use, useEffect, useState } from "react";
-import { ReadData, SetData } from "../../components/RealtimeDatabase";
+import { ReadData, SetData } from "../../../components/RealtimeDatabase";
 import LightSensorChart from "@/components/LightSensorChart";
 import MoistureSensorChart from "@/components/MoistureSensorChart";
 import CurrentReadings from "@/components/CurrentReadings";
