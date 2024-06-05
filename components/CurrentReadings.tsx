@@ -24,7 +24,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 function displayLightPanelContent(light: number){
   let lightPanelTheme = " from-orange-500/30 border-red-400"
   let lightPanelMessage = "Too much sunlight!"
-  if (light < 2000 && light >= 1000){
+  if (light < 5000 && light >= 1000){
     lightPanelTheme = " from-yellow-500/30 border-yellow-400"
     lightPanelMessage = "Adequate amount of sunlight!"
   } else if (light < 1000 && light >= 100){

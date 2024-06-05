@@ -123,15 +123,13 @@ export default function Dashboard() {
             >
               {manualCont ? manualLid ? "Close Lid" : "Open Lid" : lidStat ? "Close Lid" : "Open Lid"}
             </Button>
-            {/* Water plant button not yet implemented*/}
-            <Button 
-              disabled = {sensors.moist >= 51}
+            {/* <Button 
+              disabled = {manualWater}
               className="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded-lg"
               onClick = {handleWaterButton}
             >
                Water Plant
-              {/* manualWater ? "Stop" : "Water Plant*/}
-            </Button>
+            </Button> */}
           </div>
         </div>
       </section>

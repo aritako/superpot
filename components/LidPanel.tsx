@@ -7,7 +7,7 @@ interface LidPanelProps {
 }
 
 const LidPanel : React.FC<LidPanelProps> = ({lidStat, light, manualLid}) => {
-  const finalLidStat = manualLid ? lidStat : light < 2000;
+  const finalLidStat = manualLid ? lidStat : light < 5000;
   const status = finalLidStat ? "Open" : "Closed";
   return (
     <div className="flex flex-col items-center">
