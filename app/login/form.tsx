@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input"
 import { auth } from "../../firebase";
+import { useRouter } from "next/router";
 
 type loginFormData = {
   email: string;
@@ -19,10 +20,10 @@ export default function LoginForm() {
     password: "",
   });
   const [error, setError] = useState<string | null>(null);
-  const { data: session } = useSession();
-  if (session) {
-    redirect("/dashboard");
-  }
+  // const { data: session } = useSession();
+  // if (session) {
+  //   redirect("/dashboard");
+  // }
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({
@@ -30,21 +31,23 @@ export default function LoginForm() {
       [name]: value,
     });
   };
-
+  // const { data: session } = useSession();
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await signIn("credentials", {
-      email: formData.email,
-      password: formData.password,
-      redirect: false,
-    });
-    
-    if (response?.error) {
-      if (response.error === "CredentialsSignin") {
+    try {
+      const response = await signIn("credentials", {
+        email: formData.email,
+        password: formData.password,
+        redirect: false,
+      });
+      if (response?.error) {
         setError("Email or password is incorrect");
-      } else if (response.error === "ConfigurationError") {
-        setError("Invalid action");
+      } else if (response?.ok) {
+        window.location.href = "/dashboard";
       }
+    } catch (error: any) {
+      console.log(error.message);
+      setError("An unexpected error occurred");
     }
   };
 
