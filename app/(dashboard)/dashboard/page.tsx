@@ -23,18 +23,20 @@ export default function Dashboard() {
     light: 0,
     moist: 0,
   });
-  // const [lightSens, setLightSens] = useState<number>(0);
-  // const [moistSens, setMoistSens] = useState<number>(0);
+  // UNUSED STATES (ONLY USED FOR DEBUGGING PURPOSES)
+  const [lightSens, setLightSens] = useState<number>(0);
+  const [moistSens, setMoistSens] = useState<number>(0);
+  const [waterStat, setWaterStat] = useState<boolean>(false);
+
+  // USED STATES 
   const [manualLid, setManualLid] = useState<boolean>(false);
   const [manualWater, setManualWater] = useState<boolean>(false);
   const [lidStat, setLidStat] = useState<boolean>(false);
   const [manualCont, setManualCont] = useState<boolean>(false);
-  // const [waterStat, setWaterStat] = useState<boolean>(false);
   const [copy, setCopy] = useState<boolean>(false);
-  // const [userUID, setUserUID] = useState<string>("");
-
   const [lightData, setLightData] = useState<LightSensorData[]>([]);
   const [moistData, setMoistData] = useState<MoistSensorData[]>([]);
+  
   const fetchData = async () => {
     const sensData = await ReadData(uid, "sens");
     const actuData = await ReadData(uid, "actu");
