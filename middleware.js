@@ -6,13 +6,13 @@ export async function middleware(req) {
   const { pathname } = req.nextUrl;
 
   // Redirect authenticated users trying to access the login page
-  if (token && pathname === '/login' && !req.nextUrl.pathname.startsWith('/dashboard')) {
+  if (token && !pathname.startsWith('/dashboard')) {
     console.log('redirecting to dashboard');
     return NextResponse.redirect(new URL('/dashboard', req.url));
   }
 
   // Redirect unauthenticated users trying to access the dashboard page
-  if (!token && pathname === '/dashboard' && !req.nextUrl.pathname.startsWith('/login')) {
+  if (!token && !pathname.startsWith('/login')) {
     console.log('redirecting to login');
     return NextResponse.redirect(new URL('/login', req.url));
   }
@@ -21,5 +21,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ['/login', '/dashboard'],
-};
+  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
+}
