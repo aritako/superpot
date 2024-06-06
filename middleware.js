@@ -6,10 +6,10 @@ export async function middleware(req) {
   const { pathname } = req.nextUrl;
 
   // Redirect authenticated users trying to access the login page
-  if (token) {
+  if (pathname.startsWith("/login") && token) {
     return NextResponse.redirect(new URL('/dashboard', req.url));
   }
-
+  
   // // Redirect unauthenticated users trying to access the dashboard page
   // if (!token && pathname === '/dashboard') {
   //   return NextResponse.redirect(new URL('/login', req.url));
@@ -19,5 +19,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ['/login'],
+  matcher: ['/login', '/dashboard'],
 };
