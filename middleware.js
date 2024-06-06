@@ -6,14 +6,13 @@ export async function middleware(req) {
   const { pathname } = req.nextUrl;
 
   // Redirect authenticated users trying to access the login page
-  if (pathname.startsWith("/login") && token) {
+  if (pathname === '/login' && token) {
+    // If authenticated and trying to access login, redirect to dashboard
     return NextResponse.redirect(new URL('/dashboard', req.url));
+  } else if (pathname === '/dashboard' && !token) {
+    // If not authenticated and trying to access dashboard, redirect to login
+    return NextResponse.redirect(new URL('/login', req.url));
   }
-  
-  // // Redirect unauthenticated users trying to access the dashboard page
-  // if (!token && pathname === '/dashboard') {
-  //   return NextResponse.redirect(new URL('/login', req.url));
-  // }
 
   return NextResponse.next();
 }
