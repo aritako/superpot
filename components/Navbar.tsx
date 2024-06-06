@@ -42,13 +42,13 @@ export default function Navbar() {
             <span className="krona_one text-sgreen">SuperPot</span>
           </a>
           {navigation.map((item) => (
-            <Link
+            <a
               key={item.name}
               href={item.href}
               className="hidden md:flex h-[36px] text-sm items-center rounded-full px-3 text-white hover:bg-slate-800 transition duration-300 ease-in-out"
             >
               {item.name}
-            </Link>
+            </a>
           ))}
         </div>
         <div className="flex gap-1">
