@@ -23,13 +23,13 @@ export default function Dashboard() {
     light: 0,
     moist: 0,
   });
-  const [lightSens, setLightSens] = useState<number>(0);
-  const [moistSens, setMoistSens] = useState<number>(0);
+  // const [lightSens, setLightSens] = useState<number>(0);
+  // const [moistSens, setMoistSens] = useState<number>(0);
   const [manualLid, setManualLid] = useState<boolean>(false);
   const [manualWater, setManualWater] = useState<boolean>(false);
   const [lidStat, setLidStat] = useState<boolean>(false);
   const [manualCont, setManualCont] = useState<boolean>(false);
-  const [waterStat, setWaterStat] = useState<boolean>(false);
+  // const [waterStat, setWaterStat] = useState<boolean>(false);
   const [copy, setCopy] = useState<boolean>(false);
   // const [userUID, setUserUID] = useState<string>("");
 
